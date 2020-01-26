@@ -1,0 +1,25 @@
+{
+  "name": "pizzapp",
+  "version": "0.0.1",
+  "description": "Trabajo final diseño web",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pieza/pizzapp.git"
+  },
+  "keywords": [
+    "pizza"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Pieza/pizzapp/issues"
+  },
+  "homepage": "https://github.com/Pieza/pizzapp#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
