@@ -4,7 +4,7 @@
   "description": "Trabajo final diseño web",
   "main": "src/index.js",
   "scripts": {
-    "build": "cd pizzapp-frontend && ng build",
+    "build": "cd pizzapp-frontend && npm install && npm build",
     "dev": "nodemon src/index.js",
     "start": "node src/index.js"
   },
