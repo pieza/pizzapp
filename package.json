@@ -4,6 +4,7 @@
   "description": "Trabajo final diseño web",
   "main": "src/index.js",
   "scripts": {
+    "build": "cd pizzapp-frontend && ng build",
     "dev": "nodemon src/index.js",
     "start": "node src/index.js"
   },
@@ -24,6 +25,10 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.8.9",
+    "morgan": "^1.9.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.2"
   }
 }
