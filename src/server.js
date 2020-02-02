@@ -17,7 +17,8 @@ app.use(express.static(path.join(__dirname, '..', 'public')))
 
 
 // routes
-//app.use(process.env.API_PATH, require('./controllers/authentication.controller'))
+app.use(process.env.API_PATH, require('./routes/ingredient.route'))
+
 // this route is used to redirect to the web page
 app.use('*', (req, res, next) => {
     if(!req.originalUrl.includes(process.env.API_PATH))
@@ -25,10 +26,5 @@ app.use('*', (req, res, next) => {
     else
         next()
 })
-
-// catch 404 and forward to error handler
-// app.use((req, res, next) => {
-//     next(createError(404))
-// })
 
 module.exports = app
