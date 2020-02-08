@@ -24,8 +24,7 @@ router.get("/register/:_id", async (req, res) => {
 router.post("/register", async (req, res) => {
   try {
     let newUser = req.body;
-    //VAR TO GET THE PASSWORD
-    //const hashedPassword = await bcrypt.hash([VAR],10)
+    newUser.password = await bcrypt.hash(newUser.password,10)
     let createdUser = await User.create(newUser);
     return res.status(200).json(createdUser);
   } catch {}
