@@ -20,6 +20,8 @@ app.use(express.static(path.join(__dirname, '..', 'public')))
 app.use(process.env.API_PATH, require('./routes/ingredient.route'))
 app.use(process.env.API_PATH, require('./routes/promo.route'))
 app.use(process.env.API_PATH, require('./routes/product.route'))
+app.use(process.env.API_PATH, require('./routes/order.route'))
+app.use(process.env.API_PATH, require('./routes/user.route'))
 
 // this route is used to redirect to the web page
 app.use('*', (req, res, next) => {
