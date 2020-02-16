@@ -6,14 +6,18 @@ const passport = require("passport");
 
 // ======== LOGIN ==========
 
-router.get("/login", async (req, res) => {});
-
-// Authenticate
+// Authentication
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", {
     successRedirect: "/yes",
-    failureRedirect: "/no",
+    failureRedirect: "/no"
   })(req, res, next);
+});
+
+// Logout
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.send("Logout :D")
 });
 
 // ======== REGISTRATION ==========
