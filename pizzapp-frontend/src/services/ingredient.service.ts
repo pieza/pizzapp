@@ -10,5 +10,4 @@ export class IngredientService extends BaseHttpService<Ingredient> {
   constructor(private http: HttpClient) { 
     super(http, '/ingredients')
   }
-  
 }
