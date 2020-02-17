@@ -6,7 +6,7 @@ const createError = require("http-errors");
 const app = express();
 
 // Passport Config
-require("./security")(passport);
+require("./security/passport")(passport);
 
 // Server Settings
 app.set("port", process.env.PORT || 3000);
