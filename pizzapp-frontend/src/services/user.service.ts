@@ -15,6 +15,7 @@ export class UserService extends BaseHttpService<User> {
   }
 
   register(user: RegisterUser) {
+    console.log(user)
     return this.http.post(`${environment.apiPath}/register`, user);
   }
 

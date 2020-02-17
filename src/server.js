@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const path = require("path");
 const passport = require("passport");
 const createError = require("http-errors");
+const cors = require('cors');
 const app = express();
 
 // Passport Config
@@ -12,6 +13,7 @@ require("./security/passport")(passport);
 app.set("port", process.env.PORT || 3000);
 
 // Middlewares
+app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 

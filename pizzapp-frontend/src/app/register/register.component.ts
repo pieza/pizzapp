@@ -8,15 +8,14 @@ import { RegisterUser } from 'src/models/register-user';
   styleUrls: ['./register.component.sass']
 })
 export class RegisterComponent implements OnInit {
-  userToRegister: RegisterUser;
-
   constructor(private service: UserService) { }
 
   ngOnInit(): void {
   }
 
-  submit() {
-    this.service.register(this.userToRegister).subscribe((data) => {
+  submit(user: RegisterUser) {
+    console.log(user)
+    this.service.register(user).subscribe((data) => {
       console.log(data)
       
     });

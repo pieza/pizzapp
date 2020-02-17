@@ -24,6 +24,7 @@ router.get("/logout", (req, res) => {
 
 // Create User
 router.post("/register", (req, res) => {
+  console.log(req.body)
   const { name, email, password, password2, tel, type } = req.body;
   let errors = [];
 
@@ -43,7 +44,7 @@ router.post("/register", (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.send(errors);
+    res.status(500).send(errors);
   } else {
     //Client Side Validation Passed
 
