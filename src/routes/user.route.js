@@ -7,11 +7,8 @@ const passport = require("passport");
 // ======== LOGIN ==========
 
 // Authentication
-router.post("/login", (req, res, next) => {
-  passport.authenticate("local", {
-    successRedirect: "/yes",
-    failureRedirect: "/no"
-  })(req, res, next);
+router.post("/login", passport.authenticate("local"), (req, res) => {
+  res.status(200).send({ data: req.user })
 });
 
 // Logout
@@ -24,23 +21,22 @@ router.get("/logout", (req, res) => {
 
 // Create User
 router.post("/register", (req, res) => {
-  console.log(req.body)
   const { name, email, password, password2, tel, type } = req.body;
-  let errors = [];
+  let errors = {};
 
   //Required Fields
-  if (!name || !email || !password || !password2 || !tel || !type) {
-    errors.push({ msg: "Please fill all required fields" });
+  if (!name || !email || !password || !password2 || !tel) {
+    errors.form = "Please fill all required fields";
   }
 
   //Check password match
   if (password !== password2) {
-    errors.push({ msg: "Password dont match" });
+    errors.password2 = "Password dont match";
   }
 
   //Check password length
   if (password.length < 6) {
-    errors.push({ msg: "Password should be at least 6 characters" });
+    errors.password = "Password should be at least 6 characters";
   }
 
   if (errors.length > 0) {
