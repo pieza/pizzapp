@@ -8,7 +8,6 @@ const OrderSchema = new Schema({
     }],
     total_price: { type: Number },
     status: { type: String },
-    status: { type: String },
     date: { type: Date, default: Date.now }
 })
 

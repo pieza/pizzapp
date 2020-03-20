@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
+const { uploadImage } = require('../utils/image.utils') 
+
 const Product = require('../models/product')
 
 router.get('/products', async (req, res) => {
@@ -19,6 +21,12 @@ router.get('/products/:_id', async (req, res) => {
 
 router.post('/products', async (req, res) => {
     let product = req.body
+
+    if(req.file) {
+        const imageUrl = await uploadImage(req.file)
+        product.image_url = imageUrl
+    } 
+
     let createdProduct = await Product.create(product)
     
     return res.status(200).json(createdProduct)
@@ -27,6 +35,12 @@ router.post('/products', async (req, res) => {
 router.put('/products/:_id', async (req, res) => {
     const _id = req.params._id
     let product = req.body
+
+    if(req.file) {
+        const imageUrl = await uploadImage(req.file)
+        product.image_url = imageUrl
+    } 
+    
     let updatedProduct = await Product.updateOne({ _id }, product )
     
     return res.status(200).json(updatedProduct)
