@@ -14,13 +14,20 @@ require("./security/passport")(passport)
 app.set("port", process.env.PORT || 3000)
 
 // Middlewares
-app.use(cors())
+app.use(cors({ 
+  origin: ["http://localhost:4200", "http://127.0.0.1:4200"], 
+  credentials: true
+}))
 app.use(morgan("dev"))
 app.use(express.json())
 app.use(session({
   secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: false,
+    secure: false
+  }
 }))
 
 

@@ -20,7 +20,17 @@ export class UserService extends BaseHttpService<User> {
 
   login(email: string, password: string) {
     let user = {email, password };
-    return this.http.post(`${environment.apiPath}/login`, user);
+    return this.http.post(`${environment.apiPath}/login`, user,  {
+      withCredentials: true
+    });
+  }
+
+  logout() {
+    return this.http.get(`${environment.apiPath}/logout`);
+  }
+
+  current() {
+    return this.http.get(`${environment.apiPath}/current`);
   }
 
 }

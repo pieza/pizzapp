@@ -8,7 +8,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { NgFlashMessagesModule } from 'ng-flash-messages';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -22,10 +22,11 @@ import { NgFlashMessagesModule } from 'ng-flash-messages';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
-    NgFlashMessagesModule.forRoot()
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    AuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

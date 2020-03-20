@@ -8,13 +8,35 @@ const passport = require("passport");
 
 // Authentication
 router.post("/login", passport.authenticate("local"), (req, res) => {
-  res.status(200).send({ data: req.user })
+  return res.status(200).send(req.user)
 });
+
+//[POST] Login User
+// router.post("/login", function(req, res, next) {
+// 	passport.authenticate("local", function(err, user, info) {
+// 		if (err) {
+// 			return res.status(501).json(err);
+// 		}
+// 		if (!user) {
+// 			return res.status(501).json(info);
+// 		}
+// 		req.logIn(user, function(err) {
+// 			if (err) {
+// 				return res.status(501).json(err);
+// 			}
+// 			return res.status(200).json(user);
+// 		});
+// 	})(req, res, next);
+// });
 
 // Logout
 router.get("/logout", (req, res) => {
   req.logout();
   res.send("Logout :D")
+});
+
+router.get("/current", (req, res) => {
+  return res.json({ isAuth: req.isAuthenticated(), user: req.user })
 });
 
 // ======== REGISTRATION ==========

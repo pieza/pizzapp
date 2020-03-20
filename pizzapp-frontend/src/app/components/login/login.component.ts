@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/services/alert.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,15 +12,15 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   private errors: any
 
-  constructor(private service: UserService ,private router: Router) { }
+  constructor(private auth: AuthService, private alert: AlertService) { }
 
   ngOnInit() {
+    this.auth.goHome()
   }
 
   submit(form: any) {
-    this.service.login(form.email, form.password).subscribe((data: any) => {
-      this.errors = data.errors ? data.errors : {};
-    });
+    this.alert.showLoading();
+    this.auth.login(form.email, form.password)
   }
 
 }
