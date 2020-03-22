@@ -69,7 +69,9 @@ export class AlertService {
   }
 
   showLoading() {
-    Swal.fire({title: 'Cargando'})
+    Swal.fire({
+      title: 'Cargando',
+    })
     Swal.showLoading();
   }
 

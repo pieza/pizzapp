@@ -15,9 +15,14 @@ export class AuthService {
   public current: any = {}
 
   getCurent() {
-    this.userService.current().subscribe((data: any) => {
-      this.current = data.isAuth ? data.user : null;
+    return new Promise((resolve, reject) => {
+      this.userService.current().subscribe((data: any) => {
+        console.log(1, data)
+        this.current = data ? data: null;
+        resolve()
+      })
     })
+
   }
 
   isAuth(role?: string): boolean {

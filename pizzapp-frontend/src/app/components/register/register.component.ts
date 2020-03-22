@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { RegisterUser } from '../../models/register-user';
-import { AuthService } from 'src/app/services/auth.service';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-register',
@@ -9,16 +9,16 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./register.component.sass']
 })
 export class RegisterComponent implements OnInit {
-  constructor(private service: UserService, private auth: AuthService) { }
+  constructor(private service: UserService, private alert: AlertService) { }
 
   ngOnInit(): void {
-    this.auth.goHome()
+
   }
 
   submit(form: RegisterUser) {
+    this.alert.showLoading();
     this.service.register(form).subscribe((data) => {
       console.log(data)
-      
     });
   }
 }

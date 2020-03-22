@@ -36,7 +36,7 @@ router.get("/logout", (req, res) => {
 });
 
 router.get("/current", (req, res) => {
-  return res.json({ isAuth: req.isAuthenticated(), user: req.user })
+  return res.json(req.user)
 });
 
 // ======== REGISTRATION ==========

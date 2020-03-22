@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(private auth: AuthService, private alert: AlertService) { }
 
   ngOnInit() {
-    this.auth.goHome()
+
   }
 
   submit(form: any) {
