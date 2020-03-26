@@ -3,6 +3,7 @@ const router = express.Router()
 
 const Ingredient = require('../models/ingredient')
 
+const { ensureAuthenticated, isAdmin } = require('../security/auth')
 const { uploadImage, deleteImage } = require('../utils/image.utils') 
 const { validate } = require('../utils/validators')
 

@@ -1,12 +1,12 @@
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Ingredientes</h1>
+<h1 class="h3 mb-2 text-gray-800">Usuarios</h1>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <a routerLink="/admin/ingredients/create" class="btn btn-success btn-icon-split pull-right">
+        <a href="#" class="btn btn-success btn-icon-split pull-right">
             <span class="icon text-white-50">
-                <i class="fas fa-plus"></i>
+                <i class="fas fa-check"></i>
             </span>
             <span class="text">Agregar</span>
         </a>
@@ -18,10 +18,8 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Tipo</th>
-                        <th>Descripción</th>
-                        <th>Imagen</th>
-                        <th>Precio</th>
-                        <th>Z-index</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -29,21 +27,17 @@
                     <tr *ngFor="let item of items">
                         <td>{{ item.name }}</td>
                         <td>{{ item.type }}</td>
-                        <td>{{ item.description }}</td>
-                        <td class="text-center">
-                            <img [src]="item.image_url" class="img-fluid" width="80"/>
-                        </td>
-                        <td>{{ item.price }}</td>
-                        <td>{{ item.zindex }}</td>
+                        <td>{{ item.email }}</td>
+                        <td>{{ item.tel }}</td>
                         <td>
                             <div class="row">
                                 <div class="col-sm-6 m-0 p-0 text-center">
-                                    <a routerLink="/admin/ingredients/edit/{{item._id}}" class="btn btn-warning btn-circle">
+                                    <a href="javascript:void(0)" role="button" class="btn btn-warning btn-circle">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                 </div>
                                 <div class="col-sm-6  m-0 p-0 text-center">
-                                    <a href="javascript:void(0)" role="button" class="btn btn-danger btn-circle" (click)="delete(item._id)">
+                                    <a href="javascript:void(0)" role="button" class="btn btn-danger btn-circle">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </div>
