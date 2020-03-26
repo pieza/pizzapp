@@ -3,6 +3,7 @@ import { UserService } from './user.service'
 import { AlertService } from './alert.service'
 import { environment } from 'src/environments/environment'
 import { Router } from '@angular/router'
+import { User } from '../models/user'
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
   auth_cookie = 'connect.sid'
   cookie_id = 'uid'
 
-  public current: any = {}
+  public current: User
 
   getCurent() {
     return new Promise((resolve, reject) => {

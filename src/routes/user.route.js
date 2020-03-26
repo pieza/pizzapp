@@ -89,4 +89,43 @@ router.post("/register", (req, res) => {
   }
 });
 
+// CRUD
+
+router.get('/users', async (req, res) => {
+  let filters = req.query ? req.query : {}
+
+  let users = await User.find(filters)
+  return res.status(200).json(users)
+})
+
+router.get('/users/:_id', async (req, res) => {
+  const _id = req.params._id
+  let user = await User.findById(_id)
+
+  return res.status(200).json(user)
+})
+
+router.post('/users', async (req, res) => {
+  let user = req.body
+  let createdUser = await User.create(user)
+  
+  return res.status(200).json(createdUser)
+})
+
+router.put('/users/:_id', async (req, res) => {
+  const _id = req.params._id
+  let user = req.body
+  let updatedUser = await User.updateOne({ _id }, user)
+  
+  return res.status(200).json(updatedUser)
+})
+
+router.delete('/users/:_id', async (req, res) => {
+  const _id = req.params._id
+  await User.deleteOne({ _id })
+
+  return res.status(200).json(true)
+})
+
+
 module.exports = router;

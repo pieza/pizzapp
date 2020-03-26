@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { IngredientService } from 'src/app/services/ingredient.service';
+import { UserService } from 'src/app/services/user.service';
 import { AlertService } from 'src/app/services/alert.service';
-import { Ingredient } from 'src/app/models/ingredient';
+import { User } from 'src/app/models/user';
 
 @Component({
-  selector: 'app-ingredients',
-  templateUrl: './ingredients.component.html',
-  styleUrls: ['./ingredients.component.sass']
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.sass']
 })
-export class IngredientsComponent implements OnInit {
-  items: Ingredient[] = []
+export class UsersComponent implements OnInit {
 
-  constructor(private service: IngredientService, private alert: AlertService) { }
+  items: User[] = []
+  constructor(private service: UserService, private alert: AlertService) { }
 
   ngOnInit(): void {
-    this.get()
+    this.get();
   }
 
   get() {
