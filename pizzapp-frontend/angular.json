@@ -31,12 +31,17 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/font-awesome/css/font-awesome.min.css",
               "node_modules/font-awesome/css/font-awesome.css",
+              "src/assets/css/admin.min.css",
               "src/styles.sass"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/popper.js/dist/esm/popper.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "src/assets/vendor/jquery-easing/jquery.easing.min.js",
+              "src/assets/js/sb-admin-2.min.js",
+              "src/assets/vendor/chart.js/Chart.min.js",
+              "src/assets/js/demo/chart-area-demo.js",
+              "src/assets/js/demo/chart-pie-demo.js"
             ]
           },
           "configurations": {
