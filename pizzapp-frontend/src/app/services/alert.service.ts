@@ -75,7 +75,11 @@ export class AlertService {
     Swal.showLoading();
   }
 
-  hideLoading() {
+  hideLoading(title?: string) {
+    Swal.fire({
+      title: title || 'Completado!',
+      confirmButtonText: 'Aceptar'
+    })
     Swal.hideLoading();
   }
 }

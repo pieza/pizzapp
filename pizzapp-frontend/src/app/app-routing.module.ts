@@ -6,13 +6,14 @@ import { LoginComponent } from './components/login/login.component'
 import { DashboardComponent } from './pages/dashboard/dashboard.component'
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service'
 import { LoginGuardService as LoginGuard } from './services/login-guard.service'
+import { AssembleComponent } from './pages/assemble/assemble.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', canActivate:[LoginGuard], component: RegisterComponent },
   { path: 'login', canActivate:[LoginGuard], component: LoginComponent },
+  { path: 'assemble',  component: AssembleComponent },
   { path: 'admin', canActivate:[AuthGuard], data: { role: 'ADMIN' } , component: DashboardComponent }
-
 ]
 
 @NgModule({

@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { LoginGuardService } from './services/login-guard.service';
+import { AssembleComponent } from './pages/assemble/assemble.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LoginGuardService } from './services/login-guard.service';
     RegisterComponent,
     HomeComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    AssembleComponent
   ],
   imports: [
     BrowserModule,
