@@ -7,10 +7,10 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { LoginGuardService } from './services/login-guard.service';
 import { AssembleComponent } from './pages/assemble/assemble.component';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -18,13 +18,13 @@ import { AssembleComponent } from './pages/assemble/assemble.component';
     RegisterComponent,
     HomeComponent,
     LoginComponent,
-    DashboardComponent,
     AssembleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    AdminModule,
     FormsModule
   ],
   providers: [
