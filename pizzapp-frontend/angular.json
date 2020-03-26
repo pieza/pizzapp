@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "pizzapp-frontend": {
@@ -30,12 +30,18 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/font-awesome/css/font-awesome.min.css",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "src/assets/css/admin.min.css",
               "src/styles.sass"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/popper.js/dist/esm/popper.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "src/assets/vendor/jquery-easing/jquery.easing.min.js",
+              "src/assets/js/sb-admin-2.min.js",
+              "src/assets/vendor/chart.js/Chart.min.js",
+              "src/assets/js/demo/chart-area-demo.js",
+              "src/assets/js/demo/chart-pie-demo.js"
             ]
           },
           "configurations": {
@@ -129,6 +135,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "pizzapp-frontend"
+    }
+  },
+  "defaultProject": "pizzapp-frontend",
+  "cli": {
+    "analytics": "4d311294-b100-4561-a290-b3cf5ee3ac99"
+  }
 }
