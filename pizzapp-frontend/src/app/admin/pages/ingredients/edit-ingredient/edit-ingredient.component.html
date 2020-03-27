@@ -1,1 +1,46 @@
-<p>edit-ingredient works!</p>
+<form #edit="ngForm" (ngSubmit)="submit()">
+    <div class="card">
+        <div class="card-header">
+            <a routerLink="/admin/ingredients" class="btn btn-primary btn-icon-split pull-right">
+                <span class="icon text-white-50">
+                    <i class="fas fa-arrow-left"></i>
+                </span>
+                <span class="text">Volver</span>
+            </a>
+        </div>
+        <div class="card-body">
+
+            <label for="name"> Nombre</label>
+            <input type="text" class="form-control mb-4" placeholder="Nombre" name="name" [(ngModel)]="item.name"
+                required>
+
+            <label for="type"> Tipo</label>
+            <input type="text" class="form-control mb-4" placeholder="Tipo" name="type" [(ngModel)]="item.type"
+                required>
+
+            <label for="file"> Imagen</label>
+            <div class="row">
+                <div class="col-md-12">
+                    <img [src]="item.image_url" class="img-fluid mb-4" width="150"/>
+                </div>
+                <div class="col-md-12">
+                    <input type="file" accept="image/x-png,image/gif,image/jpeg" class="form-control mb-4" placeholder="Tipo" name="file" (change)="onFileChange($event.target.files[0])" required>    
+                </div>
+                
+            </div>
+           
+            <label for="description"> Descripción</label>
+            <input type="text" class="form-control mb-4" placeholder="Descripción" name="description"[(ngModel)]="item.description" required>
+
+            <label for="price"> Precio</label>
+            <input type="number" class="form-control mb-4" placeholder="Precio" name="price" [(ngModel)]="item.price"
+                required>
+
+            <label for="zindex"> Posición Z</label>
+            <input type="number" class="form-control mb-4" placeholder="Posición Z" name="zindex"[(ngModel)]="item.zindex" required>
+
+            <button class="btn btn-success my-4 btn-block" type="submit">Confirmar</button>
+
+        </div>
+    </div>
+</form>

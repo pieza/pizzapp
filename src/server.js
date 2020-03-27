@@ -1,6 +1,7 @@
 const express = require("express")
 const morgan = require("morgan")
 const path = require("path")
+const multer = require('multer')
 const passport = require("passport")
 const session = require("express-session")
 const cors = require('cors')
@@ -29,6 +30,7 @@ app.use(session({
     secure: false
   }
 }))
+app.use(multer({dest: path.join(__dirname, '..', 'public/upload/temp')}).single('file'))
 
 
 

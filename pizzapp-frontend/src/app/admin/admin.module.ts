@@ -9,6 +9,7 @@ import { IngredientsComponent } from './pages/ingredients/ingredients.component'
 import { UsersComponent } from './pages/users/users.component';
 import { EditIngredientComponent } from './pages/ingredients/edit-ingredient/edit-ingredient.component';
 import { CreateIngredientComponent } from './pages/ingredients/create-ingredient/create-ingredient.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -26,7 +27,8 @@ import { CreateIngredientComponent } from './pages/ingredients/create-ingredient
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    FormsModule
   ]
 })
 export class AdminModule { }

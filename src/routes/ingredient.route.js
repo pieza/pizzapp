@@ -37,7 +37,7 @@ router.post('/ingredients', async (req, res, next) => {
 
         if(req.file) {
             const imageUrl = await uploadImage(req.file)
-            product.image_url = imageUrl
+            ingredient.image_url = imageUrl
         } 
 
         let createdIngredient = await Ingredient.create(ingredient)
@@ -56,10 +56,11 @@ router.put('/ingredients/:_id', async (req, res, next) => {
 
         if(req.file) {
             const imageUrl = await uploadImage(req.file)
-            product.image_url = imageUrl
+            ingredient.image_url = imageUrl
         } 
 
-        let updatedIngredient = await Ingredient.updateOne({ _id }, ingredient )
+        await Ingredient.updateOne({ _id }, ingredient )
+        let updatedIngredient = await Ingredient.findById(_id)
         
         return res.status(200).json(updatedIngredient)
     } catch (error) {

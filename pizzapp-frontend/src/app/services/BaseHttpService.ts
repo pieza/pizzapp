@@ -26,7 +26,7 @@ export class BaseHttpService<T extends any> {
      * Create a new object in database.
      * @param item Object to create.
      */
-    create(item: T) {
+    create(item: T | FormData) {
         return this.httpClient.post(this.url, item);
     }
 
@@ -35,7 +35,7 @@ export class BaseHttpService<T extends any> {
      * @param id Id of element.
      * @param item New data of element.
      */
-    update(id: string, item: T) {
+    update(id: string, item: T | FormData) {
         return this.httpClient.put(`${this.url}/${id}`, item);
     }
 

@@ -16,7 +16,7 @@ imageUploader.uploadImage = async (image) => {
 
     const imageTempPath = image.path;
     const ext = path.extname(image.originalname).toLowerCase()
-    const targetPath = path.resolve(`src/public/upload/${imgUrl}${ext}`)
+    const targetPath = path.resolve(`public/upload/${imgUrl}${ext}`)
 
     // Validate Extension
     if (ext === '.png' || ext === '.jpg' || ext === '.jpeg' || ext === '.gif') {
