@@ -11,7 +11,7 @@ import { AlertService } from 'src/app/services/alert.service';
 })
 export class EditIngredientComponent implements OnInit {
   id: string
-  item: Ingredient
+  item: Ingredient = new Ingredient()
   file: File
 
   constructor(private service: IngredientService, private route: ActivatedRoute, private alert: AlertService) { }
@@ -46,7 +46,4 @@ export class EditIngredientComponent implements OnInit {
       this.alert.success('Elemento actualizado correctamente!')
     }, error => { this.alert.error('Ha ocurrido un error') })
   }
-
-
-
 }

@@ -1,12 +1,10 @@
-<!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Usuarios</h1>
 
-<!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <a href="#" class="btn btn-success btn-icon-split pull-right">
+        <a routerLink="/admin/users/create" class="btn btn-success btn-icon-split pull-right">
             <span class="icon text-white-50">
-                <i class="fas fa-check"></i>
+                <i class="fas fa-plus"></i>
             </span>
             <span class="text">Agregar</span>
         </a>
@@ -32,12 +30,12 @@
                         <td>
                             <div class="row">
                                 <div class="col-sm-6 m-0 p-0 text-center">
-                                    <a href="javascript:void(0)" role="button" class="btn btn-warning btn-circle">
+                                    <a routerLink="/admin/users/edit/{{item._id}}" class="btn btn-warning btn-circle">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                 </div>
                                 <div class="col-sm-6  m-0 p-0 text-center">
-                                    <a href="javascript:void(0)" role="button" class="btn btn-danger btn-circle">
+                                    <a href="javascript:void(0)" role="button" class="btn btn-danger btn-circle" (click)="delete(item._id)">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </div>

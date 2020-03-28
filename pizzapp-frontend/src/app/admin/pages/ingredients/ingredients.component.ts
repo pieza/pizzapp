@@ -27,6 +27,7 @@ export class IngredientsComponent implements OnInit {
     this.alert.preConfirmLoading('¿Esta seguro?', 'La acción eliminará el objeto.', () => new Promise((resolve, reject) => {
       this.service.delete(id).subscribe(result => {
         resolve('Elemento eliminado correctamente!')
+        this.get()
       }, error => reject('No se pudo eliminar el objeto.'))
     }))
   }

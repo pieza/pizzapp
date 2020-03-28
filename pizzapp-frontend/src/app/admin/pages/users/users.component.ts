@@ -14,7 +14,7 @@ export class UsersComponent implements OnInit {
   constructor(private service: UserService, private alert: AlertService) { }
 
   ngOnInit(): void {
-    this.get();
+    this.get()
   }
 
   get() {
@@ -27,6 +27,7 @@ export class UsersComponent implements OnInit {
     this.alert.preConfirmLoading('¿Esta seguro?', 'La acción eliminará el objeto.', () => new Promise((resolve, reject) => {
       this.service.delete(id).subscribe(result => {
         resolve('Elemento eliminado correctamente!')
+        this.get()
       }, error => reject('No se pudo eliminar el objeto.'))
     }))
   }
