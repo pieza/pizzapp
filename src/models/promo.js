@@ -4,6 +4,7 @@ const { Schema } = mongoose
 const PromoSchema = new Schema({
     name: { type: String },
     description: { type: String },
+    image_url: { type: String },
     code: { type: String, unique: true },
     percent: { type: Number },
     active: { type: Boolean }

@@ -10,8 +10,8 @@ export class BaseHttpService<T extends any> {
     /**
      * Get all elements in database.
      */
-    find(): Observable<any> {
-        return this.httpClient.get(this.url);
+    find(params?: any): Observable<any> {
+        return this.httpClient.get(this.url, { params, withCredentials: true });
     }
 
     /**
@@ -19,7 +19,9 @@ export class BaseHttpService<T extends any> {
      * @param id Id of element.
      */
     findOne(id: string): Observable<any> {
-        return this.httpClient.get(`${this.url}/${id}`);
+        return this.httpClient.get(`${this.url}/${id}`, {
+            withCredentials: true
+          });
     }
 
     /**
@@ -27,7 +29,9 @@ export class BaseHttpService<T extends any> {
      * @param item Object to create.
      */
     create(item: T | FormData) {
-        return this.httpClient.post(this.url, item);
+        return this.httpClient.post(this.url, item, {
+            withCredentials: true
+          });
     }
 
     /**
@@ -36,7 +40,9 @@ export class BaseHttpService<T extends any> {
      * @param item New data of element.
      */
     update(id: string, item: T | FormData) {
-        return this.httpClient.put(`${this.url}/${id}`, item);
+        return this.httpClient.put(`${this.url}/${id}`, item, {
+            withCredentials: true
+          });
     }
 
     /**
@@ -44,6 +50,8 @@ export class BaseHttpService<T extends any> {
      * @param id Id of element.
      */
     delete(id: string): Observable<any> {
-        return this.httpClient.delete(`${this.url}/${id}`);
+        return this.httpClient.delete(`${this.url}/${id}`, {
+            withCredentials: true
+          });
     }
 }

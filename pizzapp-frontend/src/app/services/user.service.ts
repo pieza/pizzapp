@@ -30,7 +30,9 @@ export class UserService extends BaseHttpService<User> {
   }
 
   current() {
-    return this.http.get(`${environment.apiPath}/current`);
+    return this.http.get(`${environment.apiPath}/current`, {
+      withCredentials: true
+    });
   }
 
 }

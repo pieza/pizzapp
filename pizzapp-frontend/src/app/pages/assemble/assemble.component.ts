@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./assemble.component.sass']
 })
 export class AssembleComponent implements OnInit {
-
+  toppings = []
+  pastas = []
   constructor() { }
 
   ngOnInit(): void {
