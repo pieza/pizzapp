@@ -3,7 +3,7 @@
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
-this.sendEmail = (name) => {
+this.sendEmail = (name, email) => {
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -14,23 +14,23 @@ this.sendEmail = (name) => {
 
     let mailOptions = {
         from: 'Pizza App',
-        to: 'alexgomezde@gmail.com',
-        subject: 'Bienvedido a Pizza App!',
+        to: email,
+        subject: '¡Bienvenido a Pizza App!',
         html: `
 
         <table border="0" cellpadding="0" cellspacing="0" width="600px" background-color="#2d3436" bgcolor="#2d3436">
             <tr height="200px">  
                 <td bgcolor="" width="600px">
-                    <h1 style="color: #fff; text-align:center">Bienvenido</h1>
-                    <p  style="color: #fff; text-align:center">
-                        <span style="color: #e84393">${name}</span> 
+                    <h1 style="color: #FFF; text-align:center">¡Bienvenido</h1>
+                    <p  style="color: #FFF; text-align:center">
+                        <span style="color: #F59A83">${name}</span> 
                         a Pizza App!
                     </p>
                 </td>
             </tr>
-            <tr bgcolor="#fff">
+            <tr bgcolor="#FFF">
                 <td style="text-align:center">
-                    <p style="color: #000">¡Un mundo de servicios a su disposición!</p>
+                    <p style="color: #FFF">¡La Mejor Pizza de Costa Rica!</p>
                 </td>
             </tr>
         </table>

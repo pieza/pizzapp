@@ -69,7 +69,7 @@ router.post("/register", (req, res) => {
           })
         );
 
-        mailer.sendEmail(newUser.name);
+        mailer.sendEmail(newUser.name, newUser.email);
       }
     });
   }
