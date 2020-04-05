@@ -14,5 +14,7 @@ export class NavbarComponent implements OnInit {
     this.name = this.auth.current.name
   }
 
-
+  logout() {
+    this.auth.logout()
+  }
 }

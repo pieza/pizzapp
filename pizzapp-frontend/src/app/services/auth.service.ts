@@ -61,8 +61,10 @@ export class AuthService {
   }
 
   logout() {
-    this.current = null
-    this.userService.logout()
-    this.router.navigate([''])
+    this.userService.logout().subscribe(data => {
+      this.current = null
+      this.router.navigate([''])
+    }, error => this.alert.error('Ha ocurrido un problema al cerrar la sesión.'))
+    
   }
 }

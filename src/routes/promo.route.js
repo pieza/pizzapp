@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
+const { isAdmin } = require("../security/auth")
 
 const Promo = require('../models/promo')
 
-router.get('/promos', async (req, res) => {
+router.get('/promos', isAdmin, async (req, res) => {
     let filters = req.query ? req.query : {}
 
     let promos = await Promo.find(filters)
@@ -17,14 +18,14 @@ router.get('/promos/:_id', async (req, res) => {
     return res.status(200).json(promo)
 })
 
-router.post('/promos', async (req, res) => {
+router.post('/promos', isAdmin, async (req, res) => {
     let promo = req.body
     let createdPromo = await Promo.create(promo)
     
     return res.status(200).json(createdPromo)
 })
 
-router.put('/promos/:_id', async (req, res) => {
+router.put('/promos/:_id', isAdmin, async (req, res) => {
     const _id = req.params._id
     let promo = req.body
     let updatedPromo = await Promo.updateOne({ _id }, promo)
@@ -32,7 +33,7 @@ router.put('/promos/:_id', async (req, res) => {
     return res.status(200).json(updatedPromo)
 })
 
-router.delete('/promos/:_id', async (req, res) => {
+router.delete('/promos/:_id', isAdmin, async (req, res) => {
     const _id = req.params._id
     await Promo.deleteOne({ _id })
 

@@ -26,7 +26,9 @@ export class UserService extends BaseHttpService<User> {
   }
 
   logout() {
-    return this.http.get(`${environment.apiPath}/logout`);
+    return this.http.get(`${environment.apiPath}/logout`, {
+      withCredentials: true
+    });
   }
 
   current() {

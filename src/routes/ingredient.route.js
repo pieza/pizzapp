@@ -29,7 +29,7 @@ router.get('/ingredients/:_id', async (req, res) => {
     }
 })
 
-router.post('/ingredients', async (req, res, next) => {
+router.post('/ingredients', isAdmin, async (req, res, next) => {
     try {
         let ingredient = req.body
         
@@ -49,7 +49,7 @@ router.post('/ingredients', async (req, res, next) => {
     
 })
 
-router.put('/ingredients/:_id', async (req, res, next) => {
+router.put('/ingredients/:_id', isAdmin, async (req, res, next) => {
     try {
         const _id = req.params._id
         let ingredient = req.body
@@ -68,7 +68,7 @@ router.put('/ingredients/:_id', async (req, res, next) => {
     }  
 })
 
-router.delete('/ingredients/:_id', async (req, res, next) => {
+router.delete('/ingredients/:_id', isAdmin, async (req, res, next) => {
     try {
         const _id = req.params._id
         const ingredient = await Ingredient.findById(_id)

@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const passport = require("passport");
+const { isAdmin } = require("../security/auth")
 
 // ======== LOGIN ==========
 
@@ -10,24 +11,6 @@ const passport = require("passport");
 router.post("/login", passport.authenticate("local"), (req, res) => {
   return res.status(200).send(req.user)
 });
-
-//[POST] Login User
-// router.post("/login", function(req, res, next) {
-// 	passport.authenticate("local", function(err, user, info) {
-// 		if (err) {
-// 			return res.status(501).json(err);
-// 		}
-// 		if (!user) {
-// 			return res.status(501).json(info);
-// 		}
-// 		req.logIn(user, function(err) {
-// 			if (err) {
-// 				return res.status(501).json(err);
-// 			}
-// 			return res.status(200).json(user);
-// 		});
-// 	})(req, res, next);
-// });
 
 // Logout
 router.get("/logout", (req, res) => {
@@ -105,14 +88,14 @@ router.get('/users/:_id', async (req, res) => {
   return res.status(200).json(user)
 })
 
-router.post('/users', async (req, res) => {
+router.post('/users', isAdmin, async (req, res) => {
   let user = req.body
   let createdUser = await User.create(user)
   
   return res.status(200).json(createdUser)
 })
 
-router.put('/users/:_id', async (req, res) => {
+router.put('/users/:_id', isAdmin, async (req, res) => {
   const _id = req.params._id
   let user = req.body
   let updatedUser = await User.updateOne({ _id }, user)
@@ -120,7 +103,7 @@ router.put('/users/:_id', async (req, res) => {
   return res.status(200).json(updatedUser)
 })
 
-router.delete('/users/:_id', async (req, res) => {
+router.delete('/users/:_id', isAdmin, async (req, res) => {
   const _id = req.params._id
   await User.deleteOne({ _id })
 
