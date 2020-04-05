@@ -1,22 +1,22 @@
 <div class="container">
-    <div class="row align-items-center h-100">
-        <div class="col-md-4 align-items-center">
-            <div class="card items-container">
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Tamaño</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                            else.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Pasta</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                          <option *ngFor="let item of pastas">{{ item.name }}</option>
-                        </select>
-                      </div>
-                    <div class="form-group">
+  <div class="row align-items-center h-100">
+    <div class="col-md-4 align-items-center">
+      <div class="card items-container">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Tamaño</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+              placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+              else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Pasta</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+              <option *ngFor="let item of pastas">{{ item.name }}</option>
+            </select>
+          </div>
+          <!-- <div class="form-group">
                         <label for="exampleFormControlSelect1">Borde</label>
                         <select class="form-control" id="exampleFormControlSelect1">
                           <option>1</option>
@@ -25,44 +25,46 @@
                           <option>4</option>
                           <option>5</option>
                         </select>
-                      </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Ingredientes</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                      </div> -->
+          <div class="form-group">
+            <label for="exampleInputPassword1">Ingredientes</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Buscar...">
 
-                        <div class="card mb-3" *ngFor="let item of toppings">
-                            <div class="row no-gutters">
-                              <div class="col-md-4">
-                                <img [src]="item.image_url" class="card-img" alt="...">
-                              </div>
-                              <div class="col-md-8">
-                                <div class="card-body">
-                                  <h5 class="card-title">{{ item.name }}</h5>
-                                  <p class="card-text">{{ item.description }}</p>
-                                  <p class="card-text"><small class="text-muted">Precio: ₡{{ item.price }}</small></p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                    </div>
+            <div class="card mb-3" *ngFor="let item of toppings">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img [src]="item.image_url" class="card-img" alt="...">
                 </div>
-            </div>
-        </div>
-
-        <div class="col-md-8 product-container">
-            <div class="d-flex justify-content-center align-items-center mt-10">
-                <img src="https://image.freepik.com/foto-gratis/madera-textura-fondo-superficie-viejo-patron-natural_23-2148283207.jpg"
-                    alt="pizza" width="400" height="400" class="img-fluid rounded-circle base" />
-                <div class="mount">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSFY10X1m5BADQRtRjztgJactEGRKHdFcYhCWidcKm9lLxHt-W"
-                        alt="pizza" width="400" height="400" class="img-fluid rounded-circle " />
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ item.name }}</h5>
+                    <p class="card-text">{{ item.description }}</p>
+                    <p class="card-text"><small class="text-muted">Precio: ₡{{ item.price }}</small></p>
+                  </div>
                 </div>
+              </div>
             </div>
-            <div class="d-flex  justify-content-end align-items-end">
-                <button type="submit" class="btn btn-primary">Siguiente</button>
-            </div>
-
+          </div>
         </div>
+      </div>
     </div>
+
+    <div class="col-md-8 product-container">
+      <div class="d-flex justify-content-center align-items-center mt-10">
+        <img
+          src="https://image.freepik.com/foto-gratis/madera-textura-fondo-superficie-viejo-patron-natural_23-2148283207.jpg"
+          alt="pizza" width="400" height="400" class="img-fluid rounded-circle base" />
+        <div class="mount">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSFY10X1m5BADQRtRjztgJactEGRKHdFcYhCWidcKm9lLxHt-W"
+            alt="pizza" width="400" height="400" class="img-fluid rounded-circle " />
+        </div>
+      </div>
+      <div class="d-flex  justify-content-end align-items-end">
+        <button type="submit" class="btn btn-primary">Siguiente</button>
+      </div>
+
+    </div>
+  </div>
 
 </div>

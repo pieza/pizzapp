@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/models/user';
 import { AlertService } from 'src/app/services/alert.service';
+import { RegisterUser } from 'src/app/models/register-user';
 
 @Component({
   selector: 'app-create-user',
@@ -10,7 +10,7 @@ import { AlertService } from 'src/app/services/alert.service';
 })
 export class CreateUserComponent implements OnInit {
 
-  item: User = new User()
+  item: RegisterUser = new RegisterUser()
 
   constructor(private service: UserService, private alert: AlertService) { }
 
@@ -21,7 +21,7 @@ export class CreateUserComponent implements OnInit {
 
   submit() {
     this.alert.showLoading()
-    this.service.create(this.item).subscribe(result => {
+    this.service.register(this.item).subscribe(result => {
       this.alert.success('Elemento creado correctamente!')
     }, error => { this.alert.error('Ha ocurrido un error') })
   }

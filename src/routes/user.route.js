@@ -54,7 +54,7 @@ router.post("/register", (req, res) => {
       if (user) {
         errors.push({ msg: "Email alrady registered" });
       } else {
-        let newUser = new User({ name, email, password, tel, type });
+        let newUser = new User({ name, email, password, tel, type: req.user && req.user.type == 'ADMIN' ? type : 'CLIENT' });
         //Encrypt Password
         bcrypt.genSalt(10, (err, salt) =>
           bcrypt.hash(password, salt, (err, hash) => {
@@ -88,19 +88,26 @@ router.get('/users/:_id', async (req, res) => {
   return res.status(200).json(user)
 })
 
-router.post('/users', isAdmin, async (req, res) => {
-  let user = req.body
-  let createdUser = await User.create(user)
-  
-  return res.status(200).json(createdUser)
-})
-
 router.put('/users/:_id', isAdmin, async (req, res) => {
   const _id = req.params._id
   let user = req.body
-  let updatedUser = await User.updateOne({ _id }, user)
-  
-  return res.status(200).json(updatedUser)
+
+  if(user.password) {
+    bcrypt.genSalt(10, (err, salt) =>
+      bcrypt.hash(user.password, salt, async (err, hash) => {
+        if (err) throw err;
+        // Set password to the hash
+        user.password = hash
+
+        let updatedUser = await User.updateOne({ _id }, user)
+        return res.status(200).json(updatedUser);
+      })
+    );
+  } else {
+    delete user.password
+    let updatedUser = await User.updateOne({ _id }, user)
+    return res.status(200).json(updatedUser)
+  }
 })
 
 router.delete('/users/:_id', isAdmin, async (req, res) => {

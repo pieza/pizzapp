@@ -44,10 +44,11 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
+    this.alert.showLoading()
     this.userService.login(email, password).subscribe((data: any) => {
       if (data) {
         this.current = data
-        this.alert.hideLoading()
+        this.alert.hideLoading(`Bienvenido ${this.current.name}!`)
         this.goHome()
       }
     }, error => {
