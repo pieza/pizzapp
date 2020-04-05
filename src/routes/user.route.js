@@ -3,7 +3,8 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const passport = require("passport");
-const { isAdmin } = require("../security/auth")
+const { isAdmin } = require("../security/auth");
+const mailer = require('../templates/register-template')
 
 // ======== LOGIN ==========
 
@@ -67,6 +68,8 @@ router.post("/register", (req, res) => {
             return res.status(200).json(newUser);
           })
         );
+
+        mailer.sendEmail(newUser.name);
       }
     });
   }
