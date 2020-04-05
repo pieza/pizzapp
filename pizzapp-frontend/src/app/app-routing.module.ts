@@ -9,10 +9,10 @@ import { AssembleComponent } from './pages/assemble/assemble.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'register', canActivate:[LoginGuard], component: RegisterComponent },
-  { path: 'login', canActivate:[LoginGuard], component: LoginComponent },
-  { path: 'assemble', component: AssembleComponent },
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }
+  { path: 'register', canActivate: [LoginGuard], component: RegisterComponent },
+  { path: 'login', canActivate: [LoginGuard], component: LoginComponent },
+  { path: 'assemble', canActivate: [AuthGuard], data: { role: 'CLIENT' }, component: AssembleComponent },
+  { path: 'admin', canActivate: [AuthGuard], data: { role: 'ADMIN' }, loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }
 ]
 
 @NgModule({
