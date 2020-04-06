@@ -23,14 +23,14 @@ this.sendEmail = (name, email) => {
                 <td bgcolor="" width="600px">
                     <h1 style="color: #FFF; text-align:center">¡Bienvenido</h1>
                     <p  style="color: #FFF; text-align:center">
-                        <span style="color: #F59A83">${name}</span> 
+                        <span style="color: #F48982">${name}</span> 
                         a Pizza App!
                     </p>
                 </td>
             </tr>
             <tr bgcolor="#FFF">
                 <td style="text-align:center">
-                    <p style="color: #FFF">¡La Mejor Pizza de Costa Rica!</p>
+                    <p style="color: #F48982">¡La Mejor Pizza de Costa Rica!</p>
                 </td>
             </tr>
         </table>
