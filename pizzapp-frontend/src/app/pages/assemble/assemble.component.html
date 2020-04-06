@@ -6,10 +6,9 @@
           <div class="form-group">
             <label for="exampleInputEmail1">Tamaño</label>
             <div class="row">
-              <div class="col-sm-3">
-                <button type="button" class="btn btn-primary btn-circle btn-sm">Blue</button> 
+              <div class="col-sm-3" *ngFor="let item of sizes">
+                <button type="button" class="btn btn-secondary btn-circle btn-xl" (click)="setSelectedSize(item)">{{ item.name }}</button> 
               </div>
-            </div>
           </div>
           <div class="form-group">
             <label for="exampleFormControlSelect1">Pasta</label>
@@ -30,17 +29,18 @@
           <div class="form-group">
             <label for="exampleInputPassword1">Ingredientes</label>
             <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Buscar...">
-
-            <div class="card mb-3" *ngFor="let item of toppings">
-              <div class="row no-gutters">
-                <div class="col-md-4">
-                  <img [src]="item.image_url" class="card-img" alt="...">
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ item.name }}</h5>
-                    <p class="card-text">{{ item.description }}</p>
-                    <p class="card-text"><small class="text-muted">Precio: ₡{{ item.price }}</small></p>
+            <div>
+              <div class="card mb-3" *ngFor="let item of toppings">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    <img [src]="item.image_url" class="card-img" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ item.name }}</h5>
+                      <p class="card-text">{{ item.description }}</p>
+                      <p class="card-text"><small class="text-muted">Precio: ₡{{ item.price }}</small></p>
+                    </div>
                   </div>
                 </div>
               </div>
