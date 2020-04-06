@@ -18,7 +18,6 @@ export class AuthService {
   getCurent() {
     return new Promise((resolve, reject) => {
       this.userService.current().subscribe((data: any) => {
-        console.log(1, data)
         this.current = data ? data: null;
         resolve()
       })

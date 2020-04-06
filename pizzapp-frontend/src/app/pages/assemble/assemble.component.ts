@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IngredientService } from 'src/app/services/ingredient.service';
+import { Ingredient } from 'src/app/models/ingredient';
 
 @Component({
   selector: 'app-assemble',
@@ -7,6 +8,7 @@ import { IngredientService } from 'src/app/services/ingredient.service';
   styleUrls: ['./assemble.component.sass']
 })
 export class AssembleComponent implements OnInit {
+  selectedSize: Ingredient
   sizes = []
   toppings = []
   pastas = []
@@ -37,4 +39,7 @@ export class AssembleComponent implements OnInit {
     })
   }
 
+  setSelectedSize(size: Ingredient) {
+    this.selectedSize = size
+  }
 }
