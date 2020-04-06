@@ -12,6 +12,9 @@ import { CreateIngredientComponent } from './pages/ingredients/create-ingredient
 import { FormsModule } from '@angular/forms';
 import { CreateUserComponent } from './pages/users/create-user/create-user.component';
 import { EditUserComponent } from './pages/users/edit-user/edit-user.component';
+import { PromosComponent } from './pages/promos/promos.component';
+import { CreatePromoComponent } from './pages/promos/create-promo/create-promo.component';
+import { EditPromoComponent } from './pages/promos/edit-promo/edit-promo.component';
 
 
 
@@ -27,7 +30,10 @@ import { EditUserComponent } from './pages/users/edit-user/edit-user.component';
     EditIngredientComponent,
     CreateIngredientComponent,
     CreateUserComponent,
-    EditUserComponent
+    EditUserComponent,
+    PromosComponent,
+    CreatePromoComponent,
+    EditPromoComponent
   ],
   imports: [
     CommonModule,
