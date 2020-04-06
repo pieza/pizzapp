@@ -1,35 +1,45 @@
-<!-- Default form login -->
-<form class="text-center border border-light p-5"  #login="ngForm" (ngSubmit)="submit(login.value)"  >
 
-    <p class="h4 mb-4">Sign in</p>
+<div class="login">
 
-    <!-- Email -->
-    <input type="email" class="form-control mb-4" placeholder="E-mail" name="email" ngModel required>
+    <div class="col-md-4 offset-md-4 pt-5">
+        <!-- Default form login -->
+    <form class="text-center border border-light p-5"  #login="ngForm" (ngSubmit)="submit(login.value)"  >
 
-    <!-- Password -->
-    <input type="password"class="form-control mb-4" placeholder="Password" name="password" ngModel required>
+        <a href="http://localhost:4200/" class="float-right mb-3"><i class="fa fa-times"></i></a>
 
-    <div class="d-flex justify-content-around">
-        <div>
-            <!-- Remember me -->
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-                <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+        <div class="clearfix"></div>
+    
+        <h1 class="h4 mb-4">Iniciar Sesión</h1>
+        <!-- Email -->
+        <input type="email" class="form-control mb-4" placeholder="Correo Electrónico" name="email" ngModel required>
+
+        <!-- Password -->
+        <input type="password"class="form-control mb-4" placeholder="Contraseña" name="password" ngModel required>
+
+        <div class="d-flex justify-content-around">
+            <div>
+                <!-- Remember me -->
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                    <label class="custom-control-label" for="defaultLoginFormRemember">Recordar</label>
+                </div>
+            </div>
+            <div>
+                <!-- Forgot password -->
+                <a href="">¿Olvido Contraseña?</a>
             </div>
         </div>
-        <div>
-            <!-- Forgot password -->
-            <a href="">Forgot password?</a>
-        </div>
-    </div>
 
-    <!-- Sign in button -->
-    <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+        <!-- Sign in button -->
+        <button class="btn btn-outline-light my-4 float-right" type="submit">Iniciar</button>
 
-    <!-- Register -->
-    <p>Not a member?
-        <a href="">Register</a>
-    </p>
+        <div class="clearfix"></div>
 
-</form>
+        <!-- Register -->
+        <p>¿No tiene cuenta?
+            <a href="http://localhost:4200/register">Registrarse</a>
+        </p>
+    </form>
 <!-- Default form login -->
+    </div>
+</div>
