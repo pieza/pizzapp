@@ -5,6 +5,7 @@ const User = require("../models/user");
 const passport = require("passport");
 const { isAdmin } = require("../security/auth");
 const mailer = require('../templates/register-template')
+const { validate } = require('../utils/validators')
 
 // ======== LOGIN ==========
 
@@ -26,34 +27,16 @@ router.get("/current", (req, res) => {
 // ======== REGISTRATION ==========
 
 // Create User
-router.post("/register", (req, res) => {
-  const { name, email, password, password2, tel, type } = req.body;
-  let errors = {};
+router.post("/register", (req, res, next) => {
+  try {
+    const { name, email, password, password2, tel, type } = req.body;
 
-  //Required Fields
-  if (!name || !email || !password || !password2 || !tel) {
-    errors.form = "Please fill all required fields";
-  }
-
-  //Check password match
-  if (password !== password2) {
-    errors.password2 = "Password dont match";
-  }
-
-  //Check password length
-  if (password.length < 6) {
-    errors.password = "Password should be at least 6 characters";
-  }
-
-  if (errors.length > 0) {
-    res.status(500).send(errors);
-  } else {
-    //Client Side Validation Passed
+    validate('user', req.body)
 
     //Server Side Validation
     User.findOne({ email: email }).then(user => {
       if (user) {
-        errors.push({ msg: "Email alrady registered" });
+        throw new Error('El email ya está registrado.')
       } else {
         let newUser = new User({ name, email, password, tel, type: req.user && req.user.type == 'ADMIN' ? type : 'CLIENT' });
         //Encrypt Password
@@ -67,13 +50,16 @@ router.post("/register", (req, res) => {
             newUser.save();
             return res.status(200).json(newUser);
           })
-        );
+        )
 
         mailer.sendEmail(newUser.name, newUser.email);
       }
-    });
+    })
+    
+  } catch (error) {
+    next(error)
   }
-});
+})
 
 // CRUD
 

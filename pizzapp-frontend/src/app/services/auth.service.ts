@@ -54,7 +54,7 @@ export class AuthService {
       if (error.status == 401)
         this.alert.error('Usuario o contraseña incorrecta.')
       else {
-        this.alert.error('Ha ocurrido un problema.')
+        this.alert.handleError(error)
         if (!environment.production) console.log(error)
       }
     })
@@ -62,9 +62,10 @@ export class AuthService {
 
   logout() {
     this.userService.logout().subscribe(data => {
+      console.log(data)
       this.current = null
       this.router.navigate([''])
-    }, error => this.alert.error('Ha ocurrido un problema al cerrar la sesión.'))
+    }, error => this.alert.handleError(error))
     
   }
 }

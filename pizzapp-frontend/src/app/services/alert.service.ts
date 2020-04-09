@@ -32,6 +32,15 @@ export class AlertService {
     this.show({title: 'Error', text, icon: 'error'});
   }
 
+    /**
+   * Display an error sweet alert dialog.
+   * @param text message.
+   */
+  handleError(error: any) {
+    console.log(error)
+    this.error(error.error.message || 'Ha ocurrido un problema.');
+  }
+
   /**
    * Show a pre confirmation modal and then excecute a promise, wait until resolve.
    * 

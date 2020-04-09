@@ -16,15 +16,24 @@ $white: #FFF
     background-position: center
     background-attachment: fixed
 
-form 
+.modal
+    display: block
+
+
+.modal-content
     background-image: $linear-gradient
+    width: 600px
+    padding: 0 20px
+    padding-bottom: 20px
+    border: none
+
+.modal-header,.modal-footer
+    border: none
     color: $white
-    font-family: 'Nunito Sans', sans-serif
-    h1
-        color: $white
-        font-weight: bolder
-    button
-        width: 150px
-    a
-        color: $white
-        font-weight: bolder
+
+.modal-body
+  color: $white
+  padding: 0 50px
+
+.close
+    color: $white

@@ -1,44 +1,37 @@
-    <!-- Default form register -->
-<form class="text-center border border-light p-5" #register="ngForm" (ngSubmit)="submit(register.value)">
-
-    <p class="h4 mb-4">Sign up</p>
-
-    <!-- Name -->
-    <input type="text" class="form-control mb-4" placeholder="Fullname" name="name" ngModel required>
-
-    <!-- E-mail -->
-    <input type="email" class="form-control mb-4" placeholder="E-mail" name="email" ngModel required>
-
-    
-    <!-- Phone number -->
-    <input type="number" class="form-control mb-4" placeholder="Phone number" name="tel" ngModel required>
-
-
-    <!-- Password -->
-    <input type="password" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" name="password" ngModel required>
-    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-        At least 8 characters and 1 digit
-    </small>
-
-    <!-- Password 2 -->
-    <input type="password" class="form-control" placeholder="Confirm password" aria-describedby="defaultRegisterFormPasswordHelpBlock" name="password2" ngModel required>
-    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-        At least 8 characters and 1 digit
-    </small>
-
-    <!-- Newsletter -->
-    <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
-        <label class="custom-control-label" for="defaultRegisterFormNewsletter">Subscribe to our newsletter</label>
+<div class="modal register" id="signUpModal">
+    <form #register="ngForm" (ngSubmit)="submit(register.value)">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">Registro</h2>
+          <!-- <button class="close" data-dismiss="modal">&times;</button> -->
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+              <label for="username">Nombre</label>
+              <input type="text" name="name" placeholder="Nombre" class="form-control" ngModel required>
+            </div>
+            <div class="form-group">
+              <label for="username">Teléfono</label>
+              <input type="text" name="tel" placeholder="Teléfono" class="form-control" ngModel required>
+            </div>
+            <div class="form-group">
+              <label for="username">Correo Electrónico</label>
+              <input type="text" name="email" placeholder="Correo Electrónico" class="form-control" ngModel required>
+            </div>
+            <div class="form-group">
+              <label for="username">Contraseña</label>
+              <input type="password" name="password" placeholder="Contraseña" class="form-control" ngModel required>
+            </div>
+            <div class="form-group">
+              <label for="password">Repetir Contraseña</label>
+              <input type="password" name="password2" placeholder="Repetir Contraseña" class="form-control" ngModel required>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-light text-uppercase" type="submit">Registrarse</button>
+        </div>
+      </div>
     </div>
-
-    <!-- Sign up button -->
-    <button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
-
-    <!-- Terms of service -->
-    <p>By clicking
-        <em>Sign up</em> you agree to our
-        <a href="" target="_blank">terms of service</a>
-
 </form>
-
+</div>
