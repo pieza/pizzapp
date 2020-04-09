@@ -4,6 +4,7 @@ import { AlertService } from './alert.service'
 import { environment } from 'src/environments/environment'
 import { Router } from '@angular/router'
 import { User } from '../models/user'
+import { deleteCookie } from '../utils/cookie.util'
 
 @Injectable({
   providedIn: 'root'
@@ -27,9 +28,7 @@ export class AuthService {
 
   isAuth(role?: string): boolean {
     if (this.current) {
-      if (role) {
-        return this.current.type == role
-      }
+      if (role) return this.current.type == role
       return true
     }
     return false
@@ -67,6 +66,7 @@ export class AuthService {
     this.userService.logout().subscribe(data => {
       console.log(data)
       this.current = null
+      deleteCookie('connect.sid')
       this.router.navigate([''])
     }, error => this.alert.handleError(error))
     
