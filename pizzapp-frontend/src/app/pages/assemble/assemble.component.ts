@@ -26,9 +26,14 @@ export class AssembleComponent implements OnInit {
     this.getPastas()
   }
 
+  getProductPrice() {
+    return this.product.ingredients.reduce((a, b) =>  { return a + b.price }, 0) + this.selectedPasta.price + this.selectedSize.price
+  }
+
   getSizes() {
     this.ingredientService.find({ type: 'size' }).subscribe(data => {
       this.sizes = data
+      this.selectedSize = this.sizes[0]
     })
   }
 
