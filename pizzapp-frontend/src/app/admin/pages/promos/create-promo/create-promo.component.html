@@ -1,0 +1,40 @@
+<form #create="ngForm" (ngSubmit)="submit()">
+    <div class="card">
+        <div class="card-header">
+            <a routerLink="/admin/promos" class="btn btn-primary btn-icon-split pull-right">
+                <span class="icon text-white-50">
+                    <i class="fas fa-arrow-left"></i>
+                </span>
+                <span class="text">Volver</span>
+            </a>
+        </div>
+        <div class="card-body">
+
+            <label> Nombre</label>
+            <input type="text" class="form-control mb-4" placeholder="Nombre" name="name" [(ngModel)]="item.name"
+                required>
+
+            <label> Descripción</label>
+            <input type="text" class="form-control mb-4" placeholder="Descripción" name="description"
+                [(ngModel)]="item.description" required>
+
+
+            <label> Código</label>
+            <input type="text" class="form-control mb-4" placeholder="Código" name="code" [(ngModel)]="item.code"
+                required>
+
+            <label> Porcentaje</label>
+            <input type="number" class="form-control mb-4" placeholder="Número" name="percent"
+                [(ngModel)]="item.percent" required>
+
+            <label > Estado</label>
+            <select class="form-control mb-4" name="active" [(ngModel)]="item.active" required>
+                <option value="true">Activo</option>
+                <option value="false">Inactivo</option>
+            </select>
+
+            <button class="btn btn-success my-4 btn-block" type="submit">Confirmar</button>
+
+        </div>
+    </div>
+</form>
