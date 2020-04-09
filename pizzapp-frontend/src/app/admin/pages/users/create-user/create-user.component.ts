@@ -23,6 +23,6 @@ export class CreateUserComponent implements OnInit {
     this.alert.showLoading()
     this.service.register(this.item).subscribe(result => {
       this.alert.success('Elemento creado correctamente!')
-    }, error => { this.alert.error('Ha ocurrido un error') })
+    }, error => { this.alert.handleError(error) })
   }
 }

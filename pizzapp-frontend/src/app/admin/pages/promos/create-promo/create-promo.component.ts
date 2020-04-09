@@ -21,7 +21,7 @@ export class CreatePromoComponent implements OnInit {
     this.alert.showLoading()
     this.service.create(this.item).subscribe(result => {
       this.alert.success('Elemento creado correctamente!')
-    }, error => { this.alert.error('Ha ocurrido un error') })
+    }, error => { this.alert.handleError(error) })
   }
 
 }

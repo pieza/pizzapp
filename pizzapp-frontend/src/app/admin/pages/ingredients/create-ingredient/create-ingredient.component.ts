@@ -37,7 +37,7 @@ export class CreateIngredientComponent implements OnInit {
 
     this.service.create(formData).subscribe(result => {
       this.alert.success('Elemento creado correctamente!')
-    }, error => { this.alert.error('Ha ocurrido un error') })
+    }, error => { this.alert.handleError(error) })
   }
 
 }

@@ -28,7 +28,7 @@ export class EditUserComponent implements OnInit {
     this.alert.showLoading()
     this.service.update(this.id, this.item).subscribe(result => {
       this.alert.success('Elemento actualizado correctamente!')
-    }, error => { this.alert.error('Ha ocurrido un error') })
+    }, error => { this.alert.handleError(error) })
   }
 
 }

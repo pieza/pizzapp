@@ -51,7 +51,10 @@ export class AuthService {
         this.goHome()
       }
     }, error => {
-      if (error.status == 401)
+      console.log(error.status)
+      if (error.status == 400)
+        this.alert.error('Por favor complete los datos.')
+      else if (error.status == 401)
         this.alert.error('Usuario o contraseña incorrecta.')
       else {
         this.alert.handleError(error)

@@ -44,6 +44,6 @@ export class EditIngredientComponent implements OnInit {
 
     this.service.update(this.id, formData).subscribe(result => {
       this.alert.success('Elemento actualizado correctamente!')
-    }, error => { this.alert.error('Ha ocurrido un error') })
+    }, error => { this.alert.handleError(error) })
   }
 }
