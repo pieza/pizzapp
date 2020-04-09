@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="row align-items-center h-100">
+    <div class="col-md-4 align-items-center">
+      <div class="card items-container">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Tamaño</label>
+            <div class="row">
+              <div class="col-sm-3" *ngFor="let item of sizes">
+                <button type="button" class="btn btn-circle btn-xl"
+                  [ngClass]="{ 'btn-success': item == selectedSize, 'btn-secondary': item != selectedSize }"
+                  (click)="setSelectedSize(item)">{{ item.name }}</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Pasta</label>
+              <select class="form-control" id="exampleFormControlSelect1" name="selectedPasta"
+                [(ngModel)]="selectedPasta">
+                <option [ngValue]="item" *ngFor="let item of pastas">{{ item.name }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Ingredientes</label>
+              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Buscar...">
+              <div class="scrollable">
+                <div class="card" *ngFor="let item of toppings">
+                  <div class="row no-gutters">
+                    <div class="col-sm-4">
+                      <img [src]="item.image_url" class="card-img" alt="...">
+                    </div>
+                    <div class="col-sm-5">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ item.name }}</h5>
+                        <p class="card-text">{{ item.description }}</p>
+                        <p class="card-text"><small class="text-muted">Precio: ₡{{ item.price }}</small></p>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <button class="btn btn-primary" (click)="addIngredient(item)" *ngIf="product.ingredients.indexOf(item) == -1">Agregar</button>
+                      <button class="btn btn-danger" (click)="deleteIngredient(item)" *ngIf="product.ingredients.indexOf(item) > - 1">Eliminar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8 product-container">
+      <div class="d-flex d-row justify-content-end align-items-end">
+        <label> Precio: ₡{{ getProductPrice() }}</label>
+      </div>
+      <div class="d-flex justify-content-center align-items-center mt-10">
+        <img
+          src="https://res.cloudinary.com/web-pizzapp/image/upload/v1586468570/mesa_uivfo7.png"
+          alt="mesa" width="400" height="400" class="img-fluid rounded-circle base" />
+
+        <div class="mount" *ngIf="selectedPasta">
+          <img [src]="selectedPasta.image_url" alt="pasta" width="400" height="400" class="img-fluid rounded-circle " />
+        </div>
+        <div class="mount" *ngFor="let item of sortIngredients()">
+          <img [src]="item.image_url" alt="pizza" width="400" height="400" class="img-fluid rounded-circle " />
+        </div>
+      </div>
+      <div class="d-flex  justify-content-end align-items-end">
+        <button type="submit" class="btn btn-primary">Agregar producto</button>
+      </div>
+      <div class="d-flex  justify-content-end align-items-end">
+        <button type="submit" class="btn btn-primary">Finalizar pedido</button>
+      </div>
+    </div>
+  </div>
+</div>

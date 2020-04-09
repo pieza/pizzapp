@@ -1,34 +1,61 @@
-const express = require('express')
-const morgan = require('morgan')
-const path = require('path')
-const createError = require('http-errors')
-
+const express = require("express")
+const morgan = require("morgan")
+const path = require("path")
+const multer = require('multer')
+const passport = require("passport")
+const session = require("express-session")
+const cors = require('cors')
 const app = express()
+const handleError = require('./utils/error-handler')
 
-// settings 
-app.set('port', process.env.PORT || 3000)
+// Passport Config
+require("./security/passport")(passport)
 
-// middlewares
-app.use(morgan('dev'))
+// Server Settings
+app.set("port", process.env.PORT || 3000)
+
+// Middlewares
+app.use(cors({ 
+  origin: ["http://localhost:4200", "http://127.0.0.1:4200"], 
+  credentials: true
+}))
+app.use(morgan("dev"))
 app.use(express.json())
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: false,
+    secure: false
+  }
+}))
+app.use(multer({dest: path.join(__dirname, '..', 'public/upload/temp')}).single('file'))
 
-// static Files
-app.use(express.static(path.join(__dirname, '..', 'public')))
 
 
-// routes
-//app.use(process.env.API_PATH, require('./controllers/authentication.controller'))
-// this route is used to redirect to the web page
-app.use('*', (req, res, next) => {
-    if(!req.originalUrl.includes(process.env.API_PATH))
-        res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
-    else
-        next()
+//Passport Middleware
+app.use(passport.initialize())
+app.use(passport.session())
+
+// Static Files
+app.use(express.static(path.join(__dirname, "..", "public")))
+
+// Routes
+app.use(process.env.API_PATH, require("./routes/ingredient.route"))
+app.use(process.env.API_PATH, require("./routes/promo.route"))
+app.use(process.env.API_PATH, require("./routes/product.route"))
+app.use(process.env.API_PATH, require("./routes/order.route"))
+app.use(process.env.API_PATH, require("./routes/user.route"))
+
+// Default Route
+app.use("*", (req, res, next) => {
+  if (!req.originalUrl.includes(process.env.API_PATH))
+    res.sendFile(path.join(__dirname, "..", "public", "index.html"))
+  else next()
 })
 
-// catch 404 and forward to error handler
-// app.use((req, res, next) => {
-//     next(createError(404))
-// })
+// Error handle
+app.use(handleError)
 
 module.exports = app

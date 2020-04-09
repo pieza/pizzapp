@@ -1,0 +1,193 @@
+<!-- NAV SECTION -->
+<nav class="navbar navbar-expand-sm fixed-top" id="main-nav">
+    <div class="container">
+        <button class="navbar-toggler  collapsed ml-auto" data-toggle="collapse" data-target="#navbarCollapse" aria-expanded="true">
+            <i class="fa fa-bars fa-1x"></i>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#home">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">Acerca</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#promotions">Promociones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contacto</a>
+                </li>
+                <li class="nav-item" *ngIf="!auth.isAuth()">
+                    <a class="nav-link" routerLink="/login">Ingresar</a>
+                </li>
+                <li class="nav-item" *ngIf="!auth.isAuth()">
+                    <a class="nav-link" routerLink="/register">Registrarse</a>
+                </li>
+                <li class="nav-item" *ngIf="auth.isAuth()">
+                    <a class="nav-link" href="javascript:void(0);" (click)="logout()">Cerrar Sesión</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+  <!-- HOME SECTION -->
+
+  <section id="home">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center">La mejor pizza de Costa Rica</h1>
+                <h2 class="text-center">- Creada por Usted -</h2>
+                <a class="d-block text-center">
+                    <button class="btn btn-outline-danger btn-lg text-uppercase" (click)="onOrderClick()">Ordenar Aquí</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-- ABOUT SECTION -->
+    
+  <section id="about">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-5">
+                <h2 class="text-center font-weight-bold">Costa Rica</h2>  
+                <h2 class="text-center font-weight-bold">Pizza App</h2>  
+                <p class="text-justify mt-3">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+            </div>
+            <div class="col-md-6 offset-md-1">
+                <img src="../assets/images/restaurant.jpg" alt="Foto Restaurante">
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="middle-background"></div>
+
+<!-- PROMOTIONS SECTION -->
+
+<div id="promotions">
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-sm-12">
+
+            <h2 class="text-center mb-5 mt-5 font-weight-bold">Promociones</h2>
+            <div id="inam" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="container">
+                    <div class="row">
+
+                        <div class="col-sm-12 col-lg-4">
+                        <div class="card">
+                            <img src="../assets/images/promo_refresco.jpg" class="card-img-top">
+                            <div class="card-body">
+                            <h4 class="card-title">Refresco Gratis</h4>
+                            <p class="card-text">Por la compra de una pizza mediana lleve gratis un refresco de 2 litros.</p>
+                            <a href="" class="btn btn-danger btn-promotion">Obtener</a>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="col-sm-12 col-lg-4">
+                        <div class="card">
+                            <img src="../assets/images/promo_pizza_grande.jpg" class="card-img-top">
+                            <div class="card-body">
+                            <h4 class="card-title">Express Gratis</h4>
+                            <p class="card-text">Servicio express gratis al comprar una pizza grande.</p>
+                            <a href="" class="btn btn-danger btn-promotion">Obtener</a>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="col-sm-12 col-lg-4">
+                        <div class="card">
+                            <img src="../assets/images/promo_2x1.jpg" class="card-img-top">
+                            <div class="card-body">
+                            <h4 class="card-title">Martes de 2x1</h4>
+                            <p class="card-text">Todos los martes 2x1 en cualquier tamaño de pizza.</p>
+                            <a href="" class="btn btn-danger btn-promotion">Obtener</a>
+                            </div>
+                        </div>
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="container">
+                    <div class="row">
+
+                        <div class="col-sm-12 col-lg-4">
+                        <div class="card">
+                            <img src="../assets/images/promo_ingredientes.jpg" class="card-img-top">
+                            <div class="card-body">
+                            <h4 class="card-title">Ingrediente gratis</h4>
+                            <p class="card-text">En su primer compra de pizza obten 2 ingredientes gratis.</p>  
+                            <a href="" class="btn btn-danger btn-promotion">Obtener</a>                          
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="col-sm-12 col-lg-4">
+                        <div class="card">
+                            <img src="../assets/images/promo_2x1.jpg" class="card-img-top">
+                            <div class="card-body">
+                            <h4 class="card-title">Martes de 2x1</h4>
+                            <p class="card-text">Todos los martes 2x1 en cualquier tamaño de pizza.</p>
+                            <a href="" class="btn btn-danger btn-promotion">Obtener</a>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="col-sm-12 col-lg-4">
+                        <div class="card">
+                        <img src="../assets/images/promo_refresco.jpg" class="card-img-top">
+                        <div class="card-body">
+                            <h4 class="card-title">Refresco Gratis</h4>
+                            <p class="card-text">Por la compra de una pizza mediana lleve gratis un refresco de 2 litros.</p>
+                            <a href="" class="btn btn-danger btn-promotion">Obtener</a>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#inam" class="carousel-control-prev" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a href="#inam" class="carousel-control-next" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+            
+            </div>
+        </div>
+        </div> 
+    </div>
+
+    <!-- CONTACT SECTION -->
+
+    <footer id="contact">
+
+        <div class="container">
+          <div class="row align-items-center float-right">
+            <div class="col-md-12">
+                <i class="fas fa-whatsapp-square fa-4x"></i>
+              <a href=""><i class="fa fa-facebook-square fa-4x"></i></a>
+              <a href=""><i class="fa fa-twitter-square fa-4x"></i></a>
+              <a href=""><i class="fa fa-youtube-square fa-4x"></i></a>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <p class="copyRight text-center"> Derechos Reservados Copyright &copy; <span id="year">2020</span></p>
+        </div>
+  
+      </footer>
+

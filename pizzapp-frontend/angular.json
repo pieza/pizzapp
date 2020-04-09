@@ -7,7 +7,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "sass"
         }
       },
       "root": "",
@@ -22,15 +22,25 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/font-awesome/css/font-awesome.min.css",
+              "src/styles.sass"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "src/assets/vendor/jquery-easing/jquery.easing.min.js",
+              "src/assets/js/sb-admin-2.min.js",
+              "src/assets/vendor/chart.js/Chart.min.js",
+              "src/assets/js/demo/chart-area-demo.js",
+              "src/assets/js/demo/chart-pie-demo.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -45,7 +55,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -93,7 +102,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.sass"
             ],
             "scripts": []
           }
@@ -124,6 +133,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "pizzapp-frontend"
+    }
+  },
+  "defaultProject": "pizzapp-frontend",
+  "cli": {
+    "analytics": "4d311294-b100-4561-a290-b3cf5ee3ac99"
+  }
 }
