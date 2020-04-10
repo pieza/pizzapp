@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { IngredientService } from 'src/app/services/ingredient.service';
 import { Ingredient } from 'src/app/models/ingredient';
 import { Product } from 'src/app/models/product';
+import { CartService } from 'src/app/services/cart.service';
+import { ProductService } from 'src/app/services/product.service';
+import { AlertService } from 'src/app/services/alert.service';
+import { Cart } from 'src/app/models/cart';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-assemble',
@@ -9,21 +14,36 @@ import { Product } from 'src/app/models/product';
   styleUrls: ['./assemble.component.sass']
 })
 export class AssembleComponent implements OnInit {
+
+  @ViewChild('capture') capture: ElementRef;
+  @ViewChild('canvas') canvas: ElementRef;
+  ctx: CanvasRenderingContext2D;
+
+  imageSize = 400
+  product_id: string
   product: Product
-  selectedSize: Ingredient
+  selectedSize: Ingredient = new Ingredient()
   selectedPasta: Ingredient = new Ingredient()
+  toppingsFilter: string
   sizes = []
   toppings = []
   pastas = []
+  cart: Cart
 
-  constructor(private ingredientService: IngredientService) { 
-    this.product = new Product()
+  constructor(private ingredientService: IngredientService, private productService: ProductService, public cartService: CartService, private alert: AlertService, private route: ActivatedRoute, private router: Router) { 
+    this.product_id = this.route.snapshot.paramMap.get('id')
+    this.loadProduct()    
   }
 
   ngOnInit(): void {
+    this.loadCart()
     this.getSizes()
     this.getToppings()
     this.getPastas()
+  }
+
+  loadCart() {
+    this.cartService.get().then((data: any) => this.cart = data)
   }
 
   getProductPrice() {
@@ -50,6 +70,14 @@ export class AssembleComponent implements OnInit {
     })
   }
 
+  filterToppings(): Ingredient[] {
+    if(!this.toppingsFilter) return this.toppings
+    else
+      return this.toppings.filter((item: Ingredient) => {
+        return item.name.toUpperCase().includes(this.toppingsFilter.toUpperCase()) || item.description.toUpperCase().includes(this.toppingsFilter.toUpperCase())
+      })
+  }
+
   addIngredient(item: Ingredient) {
     this.product.ingredients.push(item)
   }
@@ -67,4 +95,57 @@ export class AssembleComponent implements OnInit {
     return this.product.ingredients.sort((a, b) => a.zindex - b.zindex)
   }
 
+  loadProduct() {
+    if(this.product_id) {
+      this.productService.findOne(this.product_id).subscribe(data => {
+        this.product = new Product()
+        this.product.ingredients = data.ingredients.filter(item => { return item.type == 'topping' })
+        this.selectedSize = data.ingredients.filter(item => { return item.type == 'size' })[0]
+        this.selectedSize = data.ingredients.filter(item => { return item.type == 'pasta' })[0]
+      }, error => this.alert.handleError(error))
+    } else{
+      this.product = new Product()
+    }
+  }
+
+  addToCart() {
+    this.alert.showLoading()
+    let p: Product = JSON.parse(JSON.stringify(this.product))
+    p.ingredients.push(this.selectedPasta)
+    p.ingredients.push(this.selectedSize)
+    let img = this.generateImage()
+    this.cartService.addProduct(p, new File([img], 'product.png')).then(data => {
+      this.alert.success('Producto agregado correctamente!')
+      this.product = new Product()
+      this.loadCart()
+    }).catch(error => this.alert.handleError(error))
+  }
+
+  generateImage(){
+    let images: HTMLCollection = this.capture.nativeElement.children
+    this.ctx = this.canvas.nativeElement.getContext('2d')
+    for (let i = 1; i < images.length; i++) {
+      const image = images[i]
+      this.draw(image)
+    }
+    return this.canvas.nativeElement.toDataURL("image/png")
+  }
+
+  draw(element) {
+    this.ctx.drawImage(element, 0, 0, this.imageSize, this.imageSize)   
+  }
+
+  updateProduct() {
+    this.alert.showLoading()
+    let p = this.product
+    p.ingredients.push(this.selectedPasta)
+    p.ingredients.push(this.selectedSize)
+    this.productService.update(this.product_id, p).subscribe(data => {
+      this.alert.success('Producto actualizado correctamente!')
+      this.product = new Product()
+      this.product_id = null
+      this.loadCart()
+      this.router.navigate(['assemble'])
+    }, error => this.alert.handleError(error))
+  }
 }

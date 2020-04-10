@@ -38,6 +38,7 @@ export class EditIngredientComponent implements OnInit {
     if(this.file) formData.append("file", this.file)
     formData.append("name", this.item.name)
     formData.append("type", this.item.type)
+    formData.append("image_url", this.item.image_url)
     formData.append("description", this.item.description)
     formData.append("price", this.item.price.toString())
     formData.append("zindex", this.item.zindex.toString())

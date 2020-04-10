@@ -11,6 +11,8 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { LoginGuardService } from './services/login-guard.service';
 import { AssembleComponent } from './pages/assemble/assemble.component';
 import { AdminModule } from './admin/admin.module';
+import { OrderSummaryComponent } from './pages/order-summary/order-summary.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { AdminModule } from './admin/admin.module';
     RegisterComponent,
     HomeComponent,
     LoginComponent,
-    AssembleComponent
+    AssembleComponent,
+    OrderSummaryComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

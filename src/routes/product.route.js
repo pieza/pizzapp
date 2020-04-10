@@ -25,6 +25,7 @@ router.post('/products', async (req, res) => {
     if(req.file) {
         const imageUrl = await uploadImage(req.file)
         product.image_url = imageUrl
+        product.ingredients = JSON.parse(req.body.ingredients)
     } 
 
     let createdProduct = await Product.create(product)
@@ -37,6 +38,7 @@ router.put('/products/:_id', async (req, res) => {
     let product = req.body
 
     if(req.file) {
+        await deleteImage(product.image_url)
         const imageUrl = await uploadImage(req.file)
         product.image_url = imageUrl
     } 
@@ -48,6 +50,9 @@ router.put('/products/:_id', async (req, res) => {
 
 router.delete('/products/:_id', async (req, res) => {
     const _id = req.params._id
+    const product = await Product.findById(_id)
+
+    await deleteImage(product.image_url)
     await Product.deleteOne({ _id })
 
     return res.status(200).json(true)
