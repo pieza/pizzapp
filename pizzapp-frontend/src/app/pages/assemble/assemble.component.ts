@@ -28,32 +28,26 @@ export class AssembleComponent implements OnInit {
   sizes = []
   toppings = []
   pastas = []
-  cart: Cart
 
   constructor(private ingredientService: IngredientService, private productService: ProductService, public cartService: CartService, private alert: AlertService, private route: ActivatedRoute, private router: Router) { 
     this.product_id = this.route.snapshot.paramMap.get('id')
-    this.loadProduct()    
   }
 
   ngOnInit(): void {
-    this.loadCart()
     this.getSizes()
     this.getToppings()
     this.getPastas()
-  }
-
-  loadCart() {
-    this.cartService.get().then((data: any) => this.cart = data)
+    this.loadProduct()   
   }
 
   getProductPrice() {
-    return this.product.ingredients.reduce((a, b) =>  { return a + b.price }, 0) + this.selectedPasta.price + this.selectedSize.price
+    return this.product?.ingredients.reduce((a, b) =>  { return a + b.price }, 0) + this.selectedPasta.price + this.selectedSize.price || 0
   }
 
   getSizes() {
     this.ingredientService.find({ type: 'size' }).subscribe(data => {
       this.sizes = data
-      this.selectedSize = this.sizes[0]
+      if(!this.product_id) this.selectedSize = this.sizes[0]
     })
   }
 
@@ -66,7 +60,7 @@ export class AssembleComponent implements OnInit {
   getPastas() {
     this.ingredientService.find({ type: 'pasta' }).subscribe(data => {
       this.pastas = data
-      this.selectedPasta = this.pastas[0]
+      if(!this.product_id) this.selectedPasta = this.pastas[0]
     })
   }
 
@@ -92,7 +86,7 @@ export class AssembleComponent implements OnInit {
   }
 
   sortIngredients(){
-    return this.product.ingredients.sort((a, b) => a.zindex - b.zindex)
+    return this.product?.ingredients.sort((a, b) => a.zindex - b.zindex) || []
   }
 
   loadProduct() {
@@ -101,7 +95,7 @@ export class AssembleComponent implements OnInit {
         this.product = new Product()
         this.product.ingredients = data.ingredients.filter(item => { return item.type == 'topping' })
         this.selectedSize = data.ingredients.filter(item => { return item.type == 'size' })[0]
-        this.selectedSize = data.ingredients.filter(item => { return item.type == 'pasta' })[0]
+        this.selectedPasta = this.pastas.filter(p => { return p._id == data.ingredients.filter(item => { return item.type == 'pasta' })[0]._id })[0]
       }, error => this.alert.handleError(error))
     } else{
       this.product = new Product()
@@ -117,7 +111,7 @@ export class AssembleComponent implements OnInit {
     this.cartService.addProduct(p, new File([img], 'product.png')).then(data => {
       this.alert.success('Producto agregado correctamente!')
       this.product = new Product()
-      this.loadCart()
+      this.cartService.get()
     }).catch(error => this.alert.handleError(error))
   }
 
@@ -144,7 +138,7 @@ export class AssembleComponent implements OnInit {
       this.alert.success('Producto actualizado correctamente!')
       this.product = new Product()
       this.product_id = null
-      this.loadCart()
+      this.cartService.get()
       this.router.navigate(['assemble'])
     }, error => this.alert.handleError(error))
   }

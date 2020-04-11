@@ -27,7 +27,7 @@ export class CartService {
       return await this.service.create({ user_id, products: [] }).toPromise()
   }
 
-  async delete() {
+  async deleteCart() {
     let cart = await this.get()
 
     if(cart) 
@@ -46,5 +46,33 @@ export class CartService {
       cart.products.push(p)
       return await this.service.update(cart._id, cart).toPromise()
     }
+  }
+
+  async removeProduct(product: Product) {
+    let cart: any = await this.get()
+    if(cart) {
+      await this.productService.delete(product._id).toPromise()
+      cart.products = cart.products.filter(p => { return p._id != product._id})
+      return await this.service.update(cart._id, cart).toPromise()
+    }
+  }
+
+
+  getIngredientsDescription(item: Product) {
+    return item.ingredients.reduce((a, b) => a + b.name + ", ", "")
+  }
+
+  getProductPrice(item: Product) {
+    return item.ingredients.reduce((a, b) => a + b.price, 0)
+  }
+
+  getTotalPrice(cart: Cart) {
+    let result = 0
+    if(cart && cart.products) {
+      cart.products.map(p => {
+        result += this.getProductPrice(p)
+      })
+    }
+    return result
   }
 }

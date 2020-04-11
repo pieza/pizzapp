@@ -7,13 +7,23 @@ const Cart = require('../models/cart')
 router.get('/carts', ensureAuthenticated, async (req, res) => {
     let filters = req.query ? req.query : {}
 
-    let carts = await Cart.find(filters)
+    let carts = await Cart.find(filters).populate({
+        path: 'products',
+        populate: {
+            path: 'ingredients'
+        }
+    })
     return res.status(200).json(carts)
 })
 
 router.get('/carts/:_id', ensureAuthenticated, async (req, res) => {
     const _id = req.params._id
-    let cart = await Cart.findById(_id)
+    let cart = await Cart.findById(_id).populate({
+        path: 'products',
+        populate: {
+            path: 'ingredients'
+        }
+    })
 
     return res.status(200).json(cart)
 })

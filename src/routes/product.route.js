@@ -8,13 +8,13 @@ const Product = require('../models/product')
 router.get('/products', async (req, res) => {
     let filters = req.query ? req.query : {}
 
-    let products = await Product.find(filters)
+    let products = await Product.find(filters).populate('ingredients')
     return res.status(200).json(products)
 })
 
 router.get('/products/:_id', async (req, res) => {
     const _id = req.params._id
-    let product = await Product.findById(_id)
+    let product = await Product.findById(_id).populate('ingredients')
 
     return res.status(200).json(product)
 })

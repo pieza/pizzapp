@@ -13,6 +13,7 @@ import { AssembleComponent } from './pages/assemble/assemble.component';
 import { AdminModule } from './admin/admin.module';
 import { OrderSummaryComponent } from './pages/order-summary/order-summary.component';
 import { CartComponent } from './components/cart/cart.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CartComponent } from './components/cart/cart.component';
     LoginComponent,
     AssembleComponent,
     OrderSummaryComponent,
-    CartComponent
+    CartComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
