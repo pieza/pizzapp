@@ -3,29 +3,34 @@ $white: #FFF
 
 nav 
   background-image: $linear-gradient
-  li 
-    margin-left: 20px
   .fa-bars
     color: $white
+  li 
+    margin-left: auto
+    position: relative
   a
+    position: relative
+    width: fit-content
     color: $white
     text-transform: uppercase
     font-weight: lighter
-  a:hover 
-    color: $white
-  nav a::after 
-    content: ''
-    display: block
-    width: 0
+  a::after 
+    content:""
+    position: absolute
     height: 2px
-    background: #FFF
-    transition: width .3s
-  a:hover::after 
-    width: 100%
-    transition: width .3s
-  .navbar-nav li.active > a::after
-    content: ''
-    display: block
-    width: 100%
-    height: 2px
+    width: 8px
+    top: 30px
+    left: -5px
+    border-radius: 2px
+  a:hover::after
     background: $white
+    animation: slice .4s ease forwards
+
+@keyframes slice 
+  60% 
+    width: 100%
+    left: 2px
+  100% 
+    width: 100%
+    left: 0px
+    padding-left: 0
