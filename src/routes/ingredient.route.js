@@ -55,6 +55,7 @@ router.put('/ingredients/:_id', isAdmin, async (req, res, next) => {
         let ingredient = req.body
 
         if(req.file) {
+            await deleteImage(ingredient.image_url)
             const imageUrl = await uploadImage(req.file)
             ingredient.image_url = imageUrl
         } 

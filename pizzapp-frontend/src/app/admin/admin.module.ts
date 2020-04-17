@@ -15,8 +15,13 @@ import { EditUserComponent } from './pages/users/edit-user/edit-user.component';
 import { PromosComponent } from './pages/promos/promos.component';
 import { CreatePromoComponent } from './pages/promos/create-promo/create-promo.component';
 import { EditPromoComponent } from './pages/promos/edit-promo/edit-promo.component';
+import { ProductComponent } from './pages/product/product.component';
+import { EditProductComponent } from './pages/product/edit-product/edit-product.component';
+import { OrderComponent } from './pages/order/order.component';
+import { CreateOrderComponent } from './pages/order/create-order/create-order.component';
+import { EditOrderComponent } from './pages/order/edit-order/edit-order.component';
 
-
+ 
 
 
 @NgModule({
@@ -33,7 +38,12 @@ import { EditPromoComponent } from './pages/promos/edit-promo/edit-promo.compone
     EditUserComponent,
     PromosComponent,
     CreatePromoComponent,
-    EditPromoComponent
+    EditPromoComponent,
+    ProductComponent,
+    EditProductComponent,
+    OrderComponent,
+    CreateOrderComponent,
+    EditOrderComponent
   ],
   imports: [
     CommonModule,

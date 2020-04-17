@@ -11,6 +11,10 @@ import { CreateUserComponent } from './pages/users/create-user/create-user.compo
 import { PromosComponent } from './pages/promos/promos.component'
 import { CreatePromoComponent } from './pages/promos/create-promo/create-promo.component'
 import { EditPromoComponent } from './pages/promos/edit-promo/edit-promo.component'
+import { ProductComponent } from './pages/product/product.component'
+import { EditProductComponent } from './pages/product/edit-product/edit-product.component'
+import { OrderComponent } from './pages/order/order.component'
+import { EditOrderComponent } from './pages/order/edit-order/edit-order.component'
 
 
 const routes: Routes = [
@@ -45,6 +49,18 @@ const routes: Routes = [
       },
       {
         path: 'promos/edit/:id', component: EditPromoComponent
+      },
+      {
+        path: 'products', component: ProductComponent 
+      },
+      {
+        path: 'products/edit/:id', component: EditProductComponent
+      },
+      {
+        path: 'orders', component: OrderComponent 
+      },
+      {
+        path: 'orders/edit/:id', component: EditOrderComponent
       }
     ] 
   }

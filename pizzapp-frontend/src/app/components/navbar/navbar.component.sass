@@ -1,0 +1,36 @@
+$linear-gradient: linear-gradient(to right bottom, #FBDB89, #F48982)
+$white: #FFF
+
+nav 
+  background-image: $linear-gradient
+  .fa-bars
+    color: $white
+  li 
+    margin-left: auto
+    position: relative
+  a
+    position: relative
+    width: fit-content
+    color: $white
+    text-transform: uppercase
+    font-weight: lighter
+  a::after 
+    content:""
+    position: absolute
+    height: 2px
+    width: 8px
+    top: 30px
+    left: -5px
+    border-radius: 2px
+  a:hover::after
+    background: $white
+    animation: slice .4s ease forwards
+
+@keyframes slice 
+  60% 
+    width: 100%
+    left: 2px
+  100% 
+    width: 100%
+    left: 0px
+    padding-left: 0

@@ -47,6 +47,7 @@ app.use(process.env.API_PATH, require("./routes/promo.route"))
 app.use(process.env.API_PATH, require("./routes/product.route"))
 app.use(process.env.API_PATH, require("./routes/order.route"))
 app.use(process.env.API_PATH, require("./routes/user.route"))
+app.use(process.env.API_PATH, require("./routes/cart.route"))
 
 // Default Route
 app.use("*", (req, res, next) => {

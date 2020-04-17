@@ -14,10 +14,6 @@ export class HomeComponent implements OnInit {
 
   }
 
-  logout(){
-    this.auth.logout()
-  }
-
   onOrderClick() {
     if(this.auth.isAuth) {
       this.router.navigate(['/assemble'])
