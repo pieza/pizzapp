@@ -5,41 +5,43 @@
     <div class="col-md-4 align-items-center">
       <div class="card items-container">
         <div class="card-body">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Tamaño</label>
+          <div class="form-group justify-content-center">
+            <label for="exampleInputEmail1" class="mt-4 mb-4 label-title">Tamaño</label>
             <div class="row">
               <div class="col-sm-3" *ngFor="let item of sizes">
-                <button type="button" class="btn btn-circle btn-xl"
-                  [ngClass]="{ 'btn-success': item._id == selectedSize._id, 'btn-secondary': item != selectedSize }"
+                <button type="button" class="btn btn-circle btn-md"
+                  [ngClass]="{ 'btn-secondary': item._id == selectedSize._id, 'btn-outline-secondary': item != selectedSize }"
                   (click)="setSelectedSize(item)">{{ item.name }}</button>
               </div>
             </div>
+            <hr class="mt-5">
             <div class="form-group">
-              <label for="exampleFormControlSelect1">Pasta</label>
+              <label for="exampleFormControlSelect1" class="mt-4 mb-4 label-title">Pasta</label>
               <select class="form-control" id="exampleFormControlSelect1" name="selectedPasta"
                 [(ngModel)]="selectedPasta">
                 <option [ngValue]="item" *ngFor="let item of pastas">{{ item.name }}</option>
               </select>
             </div>
+            <hr class="mt-5">
             <div class="form-group">
-              <label for="exampleInputPassword1">Ingredientes</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Buscar..." name="toppingsFilter" [(ngModel)]="toppingsFilter">
+              <label for="exampleInputPassword1" class="mt-4 mb-4 label-title">Ingredientes</label>
+              <input type="text" class="form-control mb-4" id="exampleInputPassword1" placeholder="Buscar..." name="toppingsFilter" [(ngModel)]="toppingsFilter">
               <div class="scrollable">
                 <div class="card" *ngFor="let item of filterToppings()">
                   <div class="row no-gutters">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3 align-self-center">
                       <img [src]="item.image_url" class="card-img" alt="...">
                     </div>
-                    <div class="col-sm-5">
+                    <div class="col-sm-6">
                       <div class="card-body">
                         <h5 class="card-title">{{ item.name }}</h5>
                         <p class="card-text">{{ item.description }}</p>
                         <p class="card-text"><small class="text-muted">Precio: ₡{{ item.price }}</small></p>
                       </div>
                     </div>
-                    <div class="col-sm-3">
-                      <button class="btn btn-primary" (click)="addIngredient(item)" *ngIf="product?.ingredients.indexOf(item) == -1">Agregar</button>
-                      <button class="btn btn-danger" (click)="deleteIngredient(item)" *ngIf="product?.ingredients.indexOf(item) > - 1">Eliminar</button>
+                    <div class="col-sm-3 align-self-center">
+                      <button class="btn btn-outline-info btn-sm" (click)="addIngredient(item)" *ngIf="product?.ingredients.indexOf(item) == -1">Agregar</button>
+                      <button class="btn btn-danger btn-sm" (click)="deleteIngredient(item)" *ngIf="product?.ingredients.indexOf(item) > - 1">Eliminar</button>
                     </div>
                   </div>
                 </div>
@@ -52,7 +54,7 @@
 
     <div class="col-md-8 product-container">
       <div class="d-flex d-row justify-content-end align-items-end">
-        <label> Precio: ₡{{ getProductPrice() }}</label>
+        <label class="price"> Precio: ₡{{ getProductPrice() }}</label>
       </div>
       <div class="d-flex justify-content-center align-items-center mt-10" #capture>
         <!-- base -->
@@ -71,11 +73,11 @@
           alt="pizza" [width]="imageSize" [height]="imageSize" class="mount img-fluid rounded-circle " crossorigin/>
       </div>
       <div class="d-flex  justify-content-end align-items-end">
-        <button type="submit" class="btn btn-primary" (click)="addToCart()" *ngIf="!product_id">Agregar producto</button>
-        <button type="submit" class="btn btn-primary" (click)="updateProduct()" *ngIf="product_id">Actualizar producto</button>
+        <button type="submit" class="btn btn-outline-light" (click)="addToCart()" *ngIf="!product_id">Agregar producto</button>
+        <button type="submit" class="btn btn-outline-light" (click)="updateProduct()" *ngIf="product_id">Actualizar producto</button>
       </div>
       <div class="d-flex  justify-content-end align-items-end">
-        <a routerLink="/order-summary" class="btn btn-primary" disabled>Finalizar pedido</a>
+        <a routerLink="/order-summary" class="btn btn-primary mt-2" disabled>Finalizar pedido</a>
       </div>
     </div>
   </div>
