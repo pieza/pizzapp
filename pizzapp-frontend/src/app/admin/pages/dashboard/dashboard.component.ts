@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Chart } from "chart.js";
+import { UserService } from "src/app/services/user.service";
 
 @Component({
   selector: "app-dashboard",
@@ -7,9 +8,17 @@ import { Chart } from "chart.js";
   styleUrls: ["./dashboard.component.sass"],
 })
 export class DashboardComponent implements OnInit {
-  constructor() {}
+  constructor(public userService: UserService) {}
+  userCounter = 0;
+
+  countUser() {
+    this.userService.find().subscribe((data) => {
+      this.userCounter = data.length;
+    });
+  }
 
   ngOnInit(): void {
+    this.countUser();
     // Set new default font family and font color to mimic Bootstrap's default styling
     (Chart.defaults.global.defaultFontFamily = "Nunito"),
       '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
