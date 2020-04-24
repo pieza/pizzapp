@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const { uploadImage } = require('../utils/image.utils') 
+const { uploadImage, deleteImage } = require('../utils/image.utils') 
 
 const Product = require('../models/product')
 

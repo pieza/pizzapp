@@ -3,6 +3,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { Cart } from 'src/app/models/cart';
 import { Product } from 'src/app/models/product';
 import { AlertService } from 'src/app/services/alert.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -11,22 +12,18 @@ import { AlertService } from 'src/app/services/alert.service';
 })
 export class CartComponent implements OnInit {
 
-  cart: Cart
-  constructor(public cartService: CartService, private alert: AlertService) {
+  constructor(public cartService: CartService, private alert: AlertService, private router: Router) {
 
   }
 
   ngOnInit(): void {
-    this.loadCart()
-  }
-
-  loadCart() {
-    this.cartService.get().then((data: any) => this.cart = data)
+    this.cartService.loadCart()
   }
 
   removeProduct(product: Product) {
     this.alert.preConfirmLoading('¿Esta seguro?', 'La acción eliminará el objeto.', () => new Promise((resolve, reject) => {
       this.cartService.removeProduct(product).then(data => {
+        this.cartService.loadCart()
         resolve('Producto eliminado correctamente!')
       }).catch(error => reject('No se pudo eliminar el producto.'))
     }))
@@ -34,5 +31,9 @@ export class CartComponent implements OnInit {
 
   deleteCart() {
 
+  }
+
+  goToOrderSummary() {
+    this.router.navigate(['/order-summary'])
   }
 }

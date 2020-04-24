@@ -11,9 +11,14 @@ import { ProductService } from './product.service';
 })
 export class CartService {
   private service: BaseHttpService<Cart>
-
+  public cart: Cart
   constructor(private http: HttpClient, private productService: ProductService, private auth: AuthService) { 
     this.service = new BaseHttpService(http, '/carts');
+    this.loadCart()
+  }
+
+  loadCart() {
+    this.get().then((data: any) => this.cart = data)
   }
 
   async get() {
@@ -49,30 +54,37 @@ export class CartService {
   }
 
   async removeProduct(product: Product) {
-    let cart: any = await this.get()
-    if(cart) {
+    if(this.cart) {
       await this.productService.delete(product._id).toPromise()
-      cart.products = cart.products.filter(p => { return p._id != product._id})
-      return await this.service.update(cart._id, cart).toPromise()
+      this.cart.products = this.cart.products.filter(p => { return p._id != product._id})
+      return await this.service.update(this.cart._id, this.cart).toPromise()
     }
   }
 
 
   getIngredientsDescription(item: Product) {
-    return item.ingredients.reduce((a, b) => a + b.name + ", ", "")
+    let result = item.ingredients.reduce((a, b) => a + b.name + ", ", "")
+    if(result.length >= 2) {
+      result = result.substring(0, result.length - 2)
+    }
+    return result
   }
 
   getProductPrice(item: Product) {
     return item.ingredients.reduce((a, b) => a + b.price, 0)
   }
 
-  getTotalPrice(cart: Cart) {
+  getTotalPrice() {
     let result = 0
-    if(cart && cart.products) {
-      cart.products.map(p => {
+    if(this.cart && this.cart.products) {
+      this.cart.products.map(p => {
         result += this.getProductPrice(p)
       })
     }
     return result
+  }
+
+  isActive() {
+    return this.cart?.products?.length > 0
   }
 }
