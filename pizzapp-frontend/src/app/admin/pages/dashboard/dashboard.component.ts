@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Chart } from "chart.js";
 import { UserService } from "src/app/services/user.service";
+import { OrderService } from "src/app/services/order.service";
+import { PromoService } from 'src/app/services/promo.service';
 
 @Component({
   selector: "app-dashboard",
@@ -8,17 +10,37 @@ import { UserService } from "src/app/services/user.service";
   styleUrls: ["./dashboard.component.sass"],
 })
 export class DashboardComponent implements OnInit {
-  constructor(public userService: UserService) {}
+  constructor(
+    public userService: UserService,
+    public orderService: OrderService,
+    public promoService: PromoService
+  ) {}
   userCounter = 0;
+  orderCounter = 0;
+  promoCounter = 0;
+  grandTotal = 0;
+  clientsGraph = 0;
+  sucursalGraph = 0;
+  repartidoresGraph = 0;
 
-  countUser() {
+
+  getStats() {
     this.userService.find().subscribe((data) => {
       this.userCounter = data.length;
+    });
+    this.orderService.find().subscribe((data) => {
+      this.orderCounter = data.length;
+    });
+    this.promoService.find().subscribe((data) => {
+      this.promoCounter = data.length;
+    });
+    this.orderService.find().subscribe((data) => {
+      this.promoCounter = data.length;
     });
   }
 
   ngOnInit(): void {
-    this.countUser();
+    this.getStats();
     // Set new default font family and font color to mimic Bootstrap's default styling
     (Chart.defaults.global.defaultFontFamily = "Nunito"),
       '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -29,7 +51,7 @@ export class DashboardComponent implements OnInit {
     var myPieChart = new Chart("myPieChart", {
       type: "doughnut",
       data: {
-        labels: ["Direct", "Referral", "Social"],
+        labels: ["Clientes", "Sucursales", "Repartidores"],
         datasets: [
           {
             data: [55, 30, 15],
