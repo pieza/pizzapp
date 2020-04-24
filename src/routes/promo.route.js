@@ -1,10 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const { isAdmin } = require("../security/auth")
+const { isAdmin, ensureAuthenticated } = require("../security/auth")
 
 const Promo = require('../models/promo')
+const CODE_LENGTH = 6
 
-router.get('/promos', isAdmin, async (req, res) => {
+router.get('/promos', ensureAuthenticated, async (req, res) => {
     let filters = req.query ? req.query : {}
 
     let promos = await Promo.find(filters)
@@ -20,6 +21,13 @@ router.get('/promos/:_id', async (req, res) => {
 
 router.post('/promos', isAdmin, async (req, res) => {
     let promo = req.body
+    if(!promo.code) {
+        let code
+        do {
+            code = generateRandomCode()
+        } while(await Promo.find({ code }).length > 0)
+        promo.code = code
+    }
     let createdPromo = await Promo.create(promo)
     
     return res.status(200).json(createdPromo)
@@ -40,4 +48,14 @@ router.delete('/promos/:_id', isAdmin, async (req, res) => {
     return res.status(200).json(true)
 })
 
-module.exports = router;
+function generateRandomCode() {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    var result = ''
+    var charactersLength = characters.length;
+    for ( var i = 0; i < CODE_LENGTH; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+ }
+
+module.exports = router

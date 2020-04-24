@@ -1,5 +1,8 @@
 const express = require('express')
 const router = express.Router()
+const Order = require('../models/order')
+const Promo = require('../models/promo')
+const { ensureAuthenticated } = require("../security/auth")
 
 router.get('/orders', async (req, res, next) => {
     try {
@@ -23,9 +26,17 @@ router.get('/orders/:_id', async (req, res, next) => {
     }
 })
 
-router.post('/orders', async (req, res, next) => {
+router.post('/orders', ensureAuthenticated, async (req, res, next) => {
     try {
         let order = req.body
+        
+        if(order.promo_id) {
+            await Promo.updateOne({ _id: order.promo_id}, { active: false })
+        }
+
+        order.status = 'pending'
+
+        
         let createdOrder = await Order.create(order)
         
         return res.status(200).json(createdOrder)
