@@ -8,28 +8,28 @@
 
         <div class="col-md-6 middleClm">
 
-            <div class="gridPizza"></div>
+            <div class="gridPizza">
+                <img height="200"
+                    width="200"
+                    [src]="cartService?.cart?.products[0]?.image_url" 
+                />
+            </div>
 
             <div class="gridTable">
                 <table class="table table-hover">
                     <thead>
                         <tr class="text-uppercase">
-                            <th>Cantidad</th>
                             <th>Producto</th>
+                            <th>Ingredientes</th>
                             <th>Precio</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>TEST</td>
-                            <td>TEST</td>
-                            <td>$$$$</td>
-                        </tr>
-                        <tr>
-                            <td>TEST</td>
-                            <td>TEST</td>
-                            <td>$$$$</td>
+                        <tr *ngFor="let product of cartService?.cart?.products; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ cartService.getIngredientsDescription(product) }}</td>
+                            <td>₡{{ cartService.getProductPrice(product) }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -40,15 +40,15 @@
             <div class="row">
                 <div class="col-md text-uppercase"><strong>Subtotal :</strong></div>
                 <div class="col-md-8"></div>
-                <div class="col-md">$$$$</div>
+                <div class="col-md">₡{{ cartService.getTotalPrice() }}</div>
             </div>
 
             <div class="row">
                 <label class="col-md promoTitle text-uppercase"><strong>Promocion :</strong></label>
                 <div class="col-md-5"></div>
                 <div class="col-md-5 input-group">
-                    <input class="input-group-textarea" placeholder="PROMO1" type="text">
-                    <span class="input-group-addon text-uppercase">Aplicar</span>
+                    <input class="input-group-textarea" placeholder="PROMO" type="text" [(ngModel)]="code">
+                    <button class="input-group-addon text-uppercase" (click)="checkPromoCode()">Aplicar</button>
                 </div>
             </div>
 
@@ -57,7 +57,7 @@
             <div class="row">
                 <div class="col-md-8"></div>
                 <div class="col-md text-uppercase"><strong>Total :</strong></div>
-                <div class="col-md">$$$$</div>
+                <div class="col-md">₡{{ getFinalPrice() }}</div>
             </div>
         </div>
 

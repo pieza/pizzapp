@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const { isAdmin } = require("../security/auth")
+const { isAdmin, ensureAuthenticated } = require("../security/auth")
 
 const Promo = require('../models/promo')
 
-router.get('/promos', isAdmin, async (req, res) => {
+router.get('/promos', ensureAuthenticated, async (req, res) => {
     let filters = req.query ? req.query : {}
 
     let promos = await Promo.find(filters)
