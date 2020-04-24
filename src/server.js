@@ -16,7 +16,7 @@ app.set("port", process.env.PORT || 3000)
 
 // Middlewares
 app.use(cors({ 
-  origin: ["http://localhost:4200", "http://127.0.0.1:4200"], 
+  origin: ["http://localhost:4200", "http://127.0.0.1:4200", "https://fonts.gstatic.com"], 
   credentials: true
 }))
 app.use(morgan("dev"))

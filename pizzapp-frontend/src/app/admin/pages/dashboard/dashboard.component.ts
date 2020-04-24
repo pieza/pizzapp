@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Chart } from "chart.js";
 import { UserService } from "src/app/services/user.service";
 import { OrderService } from "src/app/services/order.service";
-import { PromoService } from 'src/app/services/promo.service';
+import { PromoService } from "src/app/services/promo.service";
 
 @Component({
   selector: "app-dashboard",
@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
     public orderService: OrderService,
     public promoService: PromoService
   ) {}
+
   userCounter = 0;
   orderCounter = 0;
   promoCounter = 0;
@@ -23,6 +24,10 @@ export class DashboardComponent implements OnInit {
   sucursalGraph = 0;
   repartidoresGraph = 0;
 
+  ngOnInit(): void {
+    this.getStats();
+    this.createChart();
+  }
 
   getStats() {
     this.userService.find().subscribe((data) => {
@@ -31,30 +36,27 @@ export class DashboardComponent implements OnInit {
     this.orderService.find().subscribe((data) => {
       this.orderCounter = data.length;
     });
-    this.promoService.find().subscribe((data) => {
+    this.promoService.find({ active: true }).subscribe((data) => {
       this.promoCounter = data.length;
     });
-    this.orderService.find().subscribe((data) => {
-      this.promoCounter = data.length;
+    this.userService.find({ type: "ADMIN" }).subscribe((data) => {
+      this.grandTotal = data.length;
     });
   }
 
-  ngOnInit(): void {
-    this.getStats();
+  createChart() {
     // Set new default font family and font color to mimic Bootstrap's default styling
     (Chart.defaults.global.defaultFontFamily = "Nunito"),
       '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
     Chart.defaults.global.defaultFontColor = "#858796";
-
     // Pie Chart
-
     var myPieChart = new Chart("myPieChart", {
       type: "doughnut",
       data: {
         labels: ["Clientes", "Sucursales", "Repartidores"],
         datasets: [
           {
-            data: [55, 30, 15],
+            data: [55, this.sucursalGraph, 15],
             backgroundColor: ["#4e73df", "#1cc88a", "#36b9cc"],
             hoverBackgroundColor: ["#2e59d9", "#17a673", "#2c9faf"],
             hoverBorderColor: "rgba(234, 236, 244, 1)",
