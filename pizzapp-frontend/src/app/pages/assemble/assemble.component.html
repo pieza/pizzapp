@@ -52,32 +52,51 @@
       </div>
     </div>
 
+    
     <div class="col-md-8 product-container">
-      <div class="d-flex d-row justify-content-end align-items-end">
-        <label class="price"> Precio: ₡{{ getProductPrice() }}</label>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="d-flex justify-content-end align-items-end">
+            <label class="price"> Precio: ₡{{ getProductPrice() }}</label>
+          </div>
+          
+        </div>
       </div>
-      <div class="d-flex justify-content-center align-items-center mt-10" #capture>
-        <!-- base -->
-        <img
-          src="https://res.cloudinary.com/web-pizzapp/image/upload/v1586468570/mesa_uivfo7.png"
-          alt="mesa" [width]="imageSize" [height]="imageSize" class="img-fluid rounded-circle base" crossorigin/>
-        <!-- pasta -->
-        <img 
-          *ngIf="selectedPasta" 
-          [src]="selectedPasta.image_url" 
-          alt="pasta" [width]="imageSize" [height]="imageSize" class="mount img-fluid rounded-circle " crossorigin/>
-        <!-- ingredients -->
-        <img 
-          *ngFor="let item of sortIngredients()" 
-          [src]="item.image_url" 
-          alt="pizza" [width]="imageSize" [height]="imageSize" class="mount img-fluid rounded-circle " crossorigin/>
+  
+
+      
+      <div class="row">
+        <div class="col-md-12">
+          <div class="d-flex justify-content-center align-items-center" #capture>
+            <!-- base -->
+            <img
+              src="https://res.cloudinary.com/web-pizzapp/image/upload/v1586468570/mesa_uivfo7.png"
+              alt="mesa" [width]="imageSize" [height]="imageSize" class="img-fluid rounded-circle base" crossorigin/>
+            <!-- pasta -->
+            <img 
+              *ngIf="selectedPasta" 
+              [src]="selectedPasta.image_url" 
+              alt="pasta" [width]="imageSize" [height]="imageSize" class="mount img-fluid rounded-circle " crossorigin/>
+            <!-- ingredients -->
+            <img 
+              *ngFor="let item of sortIngredients()" 
+              [src]="item.image_url" 
+              alt="pizza" [width]="imageSize" [height]="imageSize" class="mount img-fluid rounded-circle " crossorigin/>
+          </div>
+
+        </div>
+        
       </div>
-      <div class="d-flex  justify-content-end align-items-end">
-        <button type="submit" class="btn btn-outline-light" (click)="addToCart()" *ngIf="!product_id">Agregar producto</button>
-        <button type="submit" class="btn btn-outline-light" (click)="updateProduct()" *ngIf="product_id">Actualizar producto</button>
-      </div>
-      <div class="d-flex  justify-content-end align-items-end">
-        <button class="btn btn-primary mt-2"  [disabled]="!cartService.isActive()" (click)="goToOrderSummary()" >Finalizar pedido</button>
+      <div class="row mt-5 mb-5"></div>
+      <div class="row mt-5">
+        <div class="col-md-12">
+          <div class="d-flex justify-content-end align-items-end">
+            <button type="submit" class="btn btn-outline-light" (click)="addToCart()" *ngIf="!product_id">Agregar producto</button>
+            <button type="submit" class="btn btn-outline-light" (click)="updateProduct()" *ngIf="product_id">Actualizar producto</button>
+            <button class="btn btn-primary"  [disabled]="!cartService.isActive()" (click)="goToOrderSummary()" >Finalizar pedido</button>
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>

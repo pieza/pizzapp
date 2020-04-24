@@ -24,10 +24,12 @@ export class AssembleComponent implements OnInit {
   product: Product
   selectedSize: Ingredient = new Ingredient()
   selectedPasta: Ingredient = new Ingredient()
+  selectedBeberage: Ingredient = new Ingredient()
   toppingsFilter: string
   sizes = []
   toppings = []
   pastas = []
+  beverages = []
 
   constructor(
     private ingredientService: IngredientService, 
@@ -43,6 +45,7 @@ export class AssembleComponent implements OnInit {
     this.getSizes()
     this.getToppings()
     this.getPastas()
+    this.getBeverages()
     this.loadProduct()   
   }
 
@@ -67,6 +70,12 @@ export class AssembleComponent implements OnInit {
     this.ingredientService.find({ type: 'pasta' }).subscribe(data => {
       this.pastas = data
       if(!this.product_id) this.selectedPasta = this.pastas[0]
+    })
+  }
+
+  getBeverages() {
+    this.ingredientService.find({ type: 'beverage' }).subscribe(data => {
+      this.beverages = data
     })
   }
 
