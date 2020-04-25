@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Order = require('../models/order')
 const Promo = require('../models/promo')
+const User = require('../models/user')
 const { ensureAuthenticated } = require("../security/auth")
 
 const getProductPrice = product => {
@@ -58,12 +59,10 @@ router.post('/orders', ensureAuthenticated, async (req, res, next) => {
         if(order.promo_id) {
             await Promo.updateOne({ _id: order.promo_id}, { active: false })
         }
-
         order.status = 'pending'
-
-        
         let createdOrder = await Order.create(order)
-        
+        user = await User.findById(order.user_id)
+        mailer.sendEmail(order._id, user.email, order.total_price, user.name);
         return res.status(200).json(createdOrder)
     } catch (error) {
         next(error)
