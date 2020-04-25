@@ -27,7 +27,7 @@
                 <h2 class="text-center font-weight-bold">Pizza App</h2>  
                 <p class="text-justify mt-3">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
             </div>
-            <div class="col-md-6 offset-md-1">
+            <div class="col-md-6 offset-md-1 img-fluid">
                 <img src="../assets/images/restaurant.jpg" alt="Foto Restaurante">
             </div>
         </div>
@@ -40,7 +40,7 @@
 
 <div id="promotions">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row justify-content-center">
         <div class="col-sm-12">
 
             <h2 class="text-center mb-5 mt-5 font-weight-bold">Promociones</h2>
@@ -56,7 +56,8 @@
                             <div class="card-body">
                             <h4 class="card-title">Refresco Gratis</h4>
                             <p class="card-text">Por la compra de una pizza mediana lleve gratis un refresco de 2 litros.</p>
-                            <a href="" class="btn btn-danger btn-promotion">Obtener</a>
+                            <a class="btn btn-danger btn-promotion" href="#collapseCode1" data-parent="#promotions" data-toggle="collapse" role="button" aria-expanded="false">Obtener</a>
+                            <span class="promo-code collapse" id="collapseCode1">REFRESCOGRATIS</span>
                             </div>
                         </div>
                         </div>
@@ -67,7 +68,8 @@
                             <div class="card-body">
                             <h4 class="card-title">Express Gratis</h4>
                             <p class="card-text">Servicio express gratis al comprar una pizza grande.</p>
-                            <a href="" class="btn btn-danger btn-promotion">Obtener</a>
+                            <a class="btn btn-danger btn-promotion" href="#collapseCode2" data-parent="#promotions" data-toggle="collapse" role="button" aria-expanded="false">Obtener</a>
+                            <span class="promo-code collapse" id="collapseCode2">EXPRESSGRATIS</span>
                             </div>
                         </div>
                         </div>
@@ -78,7 +80,8 @@
                             <div class="card-body">
                             <h4 class="card-title">Martes de 2x1</h4>
                             <p class="card-text">Todos los martes 2x1 en cualquier tamaño de pizza.</p>
-                            <a href="" class="btn btn-danger btn-promotion">Obtener</a>
+                            <a class="btn btn-danger btn-promotion" href="#collapseCode3" data-parent="#promotions" data-toggle="collapse" role="button" aria-expanded="false">Obtener</a>
+                            <span class="promo-code collapse" id="collapseCode3">2X1PIZZA</span>
                             </div>
                         </div>
                         </div>
@@ -97,7 +100,8 @@
                             <div class="card-body">
                             <h4 class="card-title">Ingrediente gratis</h4>
                             <p class="card-text">En su primer compra de pizza obten 2 ingredientes gratis.</p>  
-                            <a href="" class="btn btn-danger btn-promotion">Obtener</a>                          
+                            <a class="btn btn-danger btn-promotion" href="#collapseCode4" data-parent="#promotions" data-toggle="collapse" role="button" aria-expanded="false">Obtener</a>
+                            <span class="promo-code collapse" id="collapseCode4">PRIMERCOMPRA</span>                         
                             </div>
                         </div>
                         </div>
@@ -108,7 +112,8 @@
                             <div class="card-body">
                             <h4 class="card-title">Martes de 2x1</h4>
                             <p class="card-text">Todos los martes 2x1 en cualquier tamaño de pizza.</p>
-                            <a href="" class="btn btn-danger btn-promotion">Obtener</a>
+                            <a class="btn btn-danger btn-promotion" href="#collapseCode5" data-parent="#promotions" data-toggle="collapse" role="button" aria-expanded="false">Obtener</a>
+                            <span class="promo-code collapse" id="collapseCode5">2X1PIZZA</span>  
                             </div>
                         </div>
                         </div>
@@ -119,7 +124,8 @@
                         <div class="card-body">
                             <h4 class="card-title">Refresco Gratis</h4>
                             <p class="card-text">Por la compra de una pizza mediana lleve gratis un refresco de 2 litros.</p>
-                            <a href="" class="btn btn-danger btn-promotion">Obtener</a>
+                            <a class="btn btn-danger btn-promotion" href="#collapseCode6" data-parent="#promotions" data-toggle="collapse" role="button" aria-expanded="false">Obtener</a>
+                            <span class="promo-code collapse" id="collapseCode6">REFRESCOGRATIS</span>  
                         </div>
                         </div>
                     </div>
@@ -146,9 +152,9 @@
     <footer id="contact">
 
         <div class="container">
-          <div class="row align-items-center float-right">
+          <div class="row float-right">
             <div class="col-md-12">
-                <i class="fas fa-whatsapp-square fa-4x"></i>
+              <i class="fas fa-whatsapp-square fa-4x"></i>
               <a href=""><i class="fa fa-facebook-square fa-4x"></i></a>
               <a href=""><i class="fa fa-twitter-square fa-4x"></i></a>
               <a href=""><i class="fa fa-youtube-square fa-4x"></i></a>

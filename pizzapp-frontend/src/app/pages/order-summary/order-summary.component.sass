@@ -1,8 +1,168 @@
 $linear-gradient: linear-gradient(to right bottom, #FBDB89, #F48982)
-    
+$white: #FFF5EE
+$grey-jet: #343434
+
 .main
+  box-sizing: border-box
+
+  height: 100%
+
+  color: $grey-jet
   font-family: 'Nunito Sans', sans-serif
-  background-image: $linear-gradient    
+  background-image: $linear-gradient
+
+.containerMod
+  padding-top: 100px
+
+  max-height: 100%
+
+  .btnSpace
+    display: flex
+
+    margin-bottom: 50px
+
+    justify-content: center
+    align-items: center  
+    align-self: flex-end 
+
+    button
+      width: 200px
+
+      color: $white
+
+    button:hover
+      color: $grey-jet
+
+  .middleClm
+    display: flex
+    flex-direction: column
+
+    justify-content: space-between
+    align-items: center
+
+    > * 
+      margin: 35px
+      width: 100%
+
+    .gridPizza
+      height: 200px
+      width: 200px
+
+      background-color: white
+      border-radius: 100%
+
+    .gridTable
+      padding: 0px 50px
+      .table
+        text-align: center
+        th, td
+          border: none
+        tbody
+          color: $white
+
+    .promoTitle
+      padding-top: 5px
+    .input-group
+      padding-left: 50px
+
+      .input-group-textarea
+        color: black
+        background: none  
+        border: 1px solid $grey-jet
+      .input-group-addon
+        padding: 5px
+
+        color: $white
+        border: 1px solid black
+        background: $grey-jet
+
+        cursor: pointer
+
+    .styleHR
+      border-top: 5px solid #696969
+
+
+.btn-circle.btn-xl 
+  width: 70px
+  height: 70px
+  padding: 10px 16px
+  border-radius: 35px
+  font-size: 24px
+  line-height: 1.33
+
+
+.btn-circle 
+  width: 30px
+  height: 30px
+  padding: 6px 0px
+  border-radius: 15px
+  text-align: center
+  font-size: 12px
+  line-height: 1.42857
+
+
+.word-selection ul 
+  list-style-type: none
+
+
+.word-selection li 
+  display: inline-block
+
+
+.word-selection input[type="checkbox"][id^="cb"] 
+  display: none
+
+
+.word-selection label 
+  border: 1px solid #fff
+  padding: 10px
+  border-radius: 50%
+  display: block
+  position: relative
+  margin: 10px
+  cursor: pointer
+
+
+.word-selection label:before 
+  background-color: rgba(16, 65, 99, 0.32 )
+  text-align:center
+  color: white
+  content: " "
+  display: block
+  border-radius: 50%
+  /*   border: 1px solid grey */
   position: absolute
-  min-width: 100vw
-  min-width: 100vh
+  top:10px
+  left: 10px
+  z-index:1
+  width: 100px
+  height: 100px
+  text-align: center
+  line-height: 100px
+  transition-duration: 0.4s
+  transform: scale(0)
+
+
+.word-selection label img 
+  height: 100px
+  width: 100px
+  transition-duration: 0.1s
+  transform-origin: 50% 50%
+  border-radius: 50%
+
+
+.word-selection :checked + label 
+  border-color: #eee
+
+
+.word-selection :checked + label:before 
+  content: "✓"
+  transform: scale(1.1)
+
+
+.word-selection :checked + label img 
+  transform: scale(1.2)
+  box-shadow: 0 0 3px #333
+  z-index: -1
+
+

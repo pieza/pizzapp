@@ -10,6 +10,7 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
+                        <th>Index</th>
                         <th>Cliente</th>
                         <th>Productos</th>
                         <th>Promociones</th>
@@ -20,20 +21,27 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of items">
+                        <td>{{ item._id | slice: -5}}</td>
                         <td>{{ item.user_id.name }}</td>
-                        <td>{{ item.products }}</td>
-                        <td>{{ item.promo_id.name }}</td>
+                        <td>
+                            <ul>
+                                <li *ngFor="let product of item.products">{{ product._id }}</li>
+                            </ul>
+                        </td>
+                        <td>{{ item.promo_id?.name || 'sin promoción' }}</td>
                         <td>{{ item.status }}</td>
-                        <td>{{ item.date }}</td>
+                        <td>{{ item.date | date:
+                            "dd/MM/yy"}}</td>
                         <td>
                             <div class="row">
                                 <div class="col-sm-6 m-0 p-0 text-center">
-                                    <a routerLink="/admin/order/edit/{{item._id}}" class="btn btn-warning btn-circle">
+                                    <a routerLink="/admin/orders/edit/{{item._id}}" class="btn btn-warning btn-circle">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                 </div>
                                 <div class="col-sm-6  m-0 p-0 text-center">
-                                    <a href="javascript:void(0)" role="button" class="btn btn-danger btn-circle" (click)="delete(item._id)">
+                                    <a href="javascript:void(0)" role="button" class="btn btn-danger btn-circle"
+                                        (click)="delete(item._id)">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </div>

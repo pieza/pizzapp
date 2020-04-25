@@ -1,6 +1,8 @@
 $text-color: #666
 $h2-color: #F59A83
 $linear-gradient: linear-gradient(to right bottom, #FBDB89, #F48982)
+$linear-gradient-lr: linear-gradient(325deg, #F48982 0%, #FBDB89 85%)
+$linear-gradient-rl: linear-gradient(30deg, #F48982 0%, #FBDB89 85%)
 $white: #FFF
 
 @import url('https://fonts.googleapis.com/css?family=Parisienne&display=swap')
@@ -8,39 +10,12 @@ $white: #FFF
 
 
 
+
+
 body
   font-family: 'Nunito Sans', sans-serif
   color: $text-color
   position: relative
-
-nav 
-  background-image: $linear-gradient
-  li 
-    margin-left: 20px
-  .fa-bars
-    color: $white
-  a
-    color: $white
-    text-transform: uppercase
-    font-weight: lighter
-  a:hover 
-    color: $white
-  nav a::after 
-    content: ''
-    display: block
-    width: 0
-    height: 2px
-    background: #FFF
-    transition: width .3s
-  a:hover::after 
-    width: 100%
-    transition: width .3s
-  .navbar-nav li.active > a::after
-    content: ''
-    display: block
-    width: 100%
-    height: 2px
-    background: $white
 
 /*-- START MODAL SECTION --*/
 
@@ -79,7 +54,7 @@ nav
   max-width:100%
   max-height:100%
   h1
-    font-family: 'Parisienne'
+    font-family: "AppetitePro"
     text-transform: capitalize
     font-size: 5em
     margin-bottom: 30px
@@ -95,7 +70,7 @@ nav
   a
     margin: auto
   .btn-lg
-    background-image:$linear-gradient
+    background-image: $linear-gradient-lr
     color: $white
     text-transform: uppercase
     font-size: 30px
@@ -104,6 +79,20 @@ nav
     padding: 20px 38px
     border-radius: 20ex
     width: 350px
+  .btn-lg:hover
+    animation: wave .2s
+
+@keyframes wave
+  0%
+    background-image: $linear-gradient-lr
+  25%
+    background-image: linear-gradient(340deg, #F48982 10%, #FBDB89 85%)
+  50% 
+    background-image: linear-gradient(0deg, #F48982 10%, #FBDB89 85%)
+  75%
+    background-image: linear-gradient(25deg, #F48982 10%, #FBDB89 85%)
+  100% 
+    background-image: $linear-gradient-rl
 /*-- END HOME SECTION --*/
 
 /*-- START ABOUT SECTION --*/
@@ -157,6 +146,10 @@ nav
     background-color: black
     background-image: $linear-gradient
     border: none
+  .promo-code
+    color: $h2-color
+    font-weight: bold
+    margin-left: 10px
 
 /*-- END PROMOTIONS SECTION --*/
 
@@ -164,7 +157,9 @@ nav
 
 footer
   .row
-    height: 600px
+    height: 350px
+  .row > *
+    align-self: flex-end
   a
     margin-left: 33px
 
@@ -174,6 +169,53 @@ footer
 
 .copyRight
   color: $h2-color
+
+/*-- END CONTACT SECTION --*/
+
+
+@media (max-width:1000px)
+  #home 
+    height: 800px
+  .card
+    margin: 0 auto
+  #middle-background
+    height: 2000px
+    top: 1150px
+
+@media (max-width:800px)
+  #home
+    h1
+      font-size: 3em
+    h2
+      font-size: 2em
+    .btn-lg
+      font-size: 20px
+      font-weight: bold
+      border: none
+      padding: 20px 38px
+      border-radius: 20ex
+      width: 300px
+  #about
+    h2
+      font-size: 32px
+    h2:first-child
+      margin-top: 50px
+    p
+      font-size: 18px
+    img 
+      width: 100%
+      height: 100%
+  #promotions
+    h2
+      font-size: 32px
+  #contact 
+    i 
+      font-size: 52px
+.copyRight
+  font-size: 12px
+
+
+
 
 
 

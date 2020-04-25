@@ -28,9 +28,14 @@ export class AssembleComponent implements OnInit {
   sizes = []
   toppings = []
   pastas = []
-
-  constructor(private ingredientService: IngredientService, private productService: ProductService, public cartService: CartService, private alert: AlertService, private route: ActivatedRoute, private router: Router) { 
-    this.product_id = this.route.snapshot.paramMap.get('id')
+  constructor(
+    private ingredientService: IngredientService, 
+    private productService: ProductService, 
+    public cartService: CartService, 
+    private alert: AlertService, 
+    private route: ActivatedRoute,
+    private router: Router) { 
+      this.product_id = this.route.snapshot.paramMap.get('id')
   }
 
   ngOnInit(): void {
@@ -63,6 +68,8 @@ export class AssembleComponent implements OnInit {
       if(!this.product_id) this.selectedPasta = this.pastas[0]
     })
   }
+
+
 
   filterToppings(): Ingredient[] {
     if(!this.toppingsFilter) return this.toppings
@@ -111,7 +118,7 @@ export class AssembleComponent implements OnInit {
     this.cartService.addProduct(p, new File([img], 'product.png')).then(data => {
       this.alert.success('Producto agregado correctamente!')
       this.product = new Product()
-      this.cartService.get()
+      this.cartService.loadCart()
     }).catch(error => this.alert.handleError(error))
   }
 
@@ -141,5 +148,9 @@ export class AssembleComponent implements OnInit {
       this.cartService.get()
       this.router.navigate(['assemble'])
     }, error => this.alert.handleError(error))
+  }
+
+  goToOrderSummary() {
+    this.router.navigate(['/order-summary'])
   }
 }

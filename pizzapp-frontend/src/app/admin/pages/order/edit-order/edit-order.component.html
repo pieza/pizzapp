@@ -1,1 +1,22 @@
-<p>edit-order works!</p>
+<form #edit="ngForm" (ngSubmit)="submit()">
+    <div class="card">
+        <div class="card-header">
+            <a routerLink="/admin/ingredients" class="btn btn-primary btn-icon-split pull-right">
+                <span class="icon text-white-50">
+                    <i class="fas fa-arrow-left"></i>
+                </span>
+                <span class="text">Volver</span>
+            </a>
+        </div>
+        <div class="card-body">
+
+            <label for="name"> Estado</label>
+            <input type="text" class="form-control mb-4" placeholder="Estado" name="name" [(ngModel)]="item.status"
+                required>
+
+        
+            <button class="btn btn-success my-4 btn-block" type="submit">Confirmar</button>
+
+        </div>
+    </div>
+</form>
