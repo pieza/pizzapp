@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Order = require('../models/order')
 const Promo = require('../models/promo')
-const User = require('../models/user')
+const mailer = require('../templates/order-template')
 const { ensureAuthenticated } = require("../security/auth")
 
 const getProductPrice = product => {
@@ -54,15 +54,25 @@ router.get('/orders/:_id', async (req, res, next) => {
 
 router.post('/orders', ensureAuthenticated, async (req, res, next) => {
     try {
-        let order = req.body
+        let orderToCreate = req.body
         
-        if(order.promo_id) {
+        if(orderToCreate.promo_id) {
             await Promo.updateOne({ _id: order.promo_id}, { active: false })
         }
-        order.status = 'pending'
-        let createdOrder = await Order.create(order)
-        user = await User.findById(order.user_id)
-        mailer.sendEmail(order._id, user.email, order.total_price, user.name);
+        orderToCreate.status = 'pending'
+        let createdOrder = await Order.create(orderToCreate)
+        // send email
+        let order = await Order.findById(createdOrder._id).populate({ path: 'products', populate: {
+            path: 'ingredients'
+        }}).populate('promo_id').populate('user_id')
+
+        let price = order.products.reduce((a, b) => a + getProductPrice(b), 0)
+        if(order.promo_id) {
+            price = price - (price * order.promo_id.percent)
+        }
+        order.total_price = price
+
+        mailer.sendEmail(order._id, order.user_id.email, order.total_price, order.user_id.name);
         return res.status(200).json(createdOrder)
     } catch (error) {
         next(error)
