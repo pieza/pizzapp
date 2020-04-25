@@ -8,7 +8,7 @@
           <div class="form-group justify-content-center">
             <label for="exampleInputEmail1" class="mt-4 mb-4 label-title">Tamaño</label>
             <div class="row">
-              <div class="col-sm-3" *ngFor="let item of sizes">
+              <div class="col-sm-3 btn-sizes" *ngFor="let item of sizes">
                 <button type="button" class="btn btn-circle btn-md"
                   [ngClass]="{ 'btn-secondary': item._id == selectedSize._id, 'btn-outline-secondary': item != selectedSize }"
                   (click)="setSelectedSize(item)">{{ item.name }}</button>
