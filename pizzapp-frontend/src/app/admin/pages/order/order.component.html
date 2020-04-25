@@ -23,7 +23,11 @@
                     <tr *ngFor="let item of items">
                         <td>{{ item._id | slice: -5}}</td>
                         <td>{{ item.user_id.name }}</td>
-                        <td>{{ item.products }}</td>
+                        <td>
+                            <ul>
+                                <li *ngFor="let product of item.products">{{ product._id }}</li>
+                            </ul>
+                        </td>
                         <td>{{ item.promo_id.name }}</td>
                         <td>{{ item.status }}</td>
                         <td>{{ item.date | date:
