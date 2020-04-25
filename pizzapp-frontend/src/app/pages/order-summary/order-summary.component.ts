@@ -7,6 +7,9 @@ import { Order } from 'src/app/models/order';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { IngredientService } from 'src/app/services/ingredient.service';
+import { Ingredient } from 'src/app/models/ingredient';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-order-summary',
@@ -16,10 +19,14 @@ import { AuthService } from 'src/app/services/auth.service';
 export class OrderSummaryComponent implements OnInit {
   code: string = ""
   promo: Promo
+  selectedBeverage: Ingredient = new Ingredient()
+  beverages = []
 
-  constructor(public cartService: CartService, private orderService: OrderService, private promoService: PromoService, private router: Router, private alert: AlertService, private auth: AuthService) { }
+
+  constructor(public cartService: CartService, private productService: ProductService, private ingredientService: IngredientService, private orderService: OrderService, private promoService: PromoService, private router: Router, private alert: AlertService, private auth: AuthService) { }
 
   ngOnInit(): void {
+    this.getBeverages()
     this.cartService.loadCart()
     if(!this.cartService.isActive()) {
       this.router.navigate(['/assemble'])
@@ -44,12 +51,20 @@ export class OrderSummaryComponent implements OnInit {
     }, error => this.alert.handleError(error))
   }
 
-  createOrder() {
+  async createOrder() {
     let order: Order = {
-      promo_id: this.promo._id,
       products: this.cartService.cart.products,
       user_id: this.auth.current._id
     } 
+    if(this.promo?._id) {
+      order.promo_id = this.promo._id
+    }
+
+    if(this.selectedBeverage) {
+      let bProduct = await this.productService.create({ image_url: this.selectedBeverage.image_url, ingredients: [this.selectedBeverage]}).toPromise()
+      order.products.push(bProduct)
+    }
+    
     this.alert.preConfirmLoading('Confirmar pedido', '¿Desea realizar la orden?', () => new Promise((resolve, reject) => {
       this.orderService.create(order).subscribe(result => {
         resolve('Orden creada correctamente!')
@@ -60,7 +75,17 @@ export class OrderSummaryComponent implements OnInit {
   }
   
   getFinalPrice(){
-    let cartTotal = this.cartService.getTotalPrice() 
+    let cartTotal = this.cartService.getTotalPrice() + (this.selectedBeverage.price ? this.selectedBeverage.price : 0)
     return this.promo?.percent ? cartTotal - (cartTotal * this.promo.percent) : cartTotal
+  }
+
+  getBeverages() {
+    this.ingredientService.find({ type: 'beverage' }).subscribe(data => {
+      this.beverages = data
+    })
+  }
+
+  setSelectedBeverage(beverage: Ingredient) {
+    this.selectedBeverage = beverage
   }
 }

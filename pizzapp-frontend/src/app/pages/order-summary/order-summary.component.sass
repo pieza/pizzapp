@@ -82,3 +82,87 @@ $grey-jet: #343434
       border-top: 5px solid #696969
 
 
+.btn-circle.btn-xl 
+  width: 70px
+  height: 70px
+  padding: 10px 16px
+  border-radius: 35px
+  font-size: 24px
+  line-height: 1.33
+
+
+.btn-circle 
+  width: 30px
+  height: 30px
+  padding: 6px 0px
+  border-radius: 15px
+  text-align: center
+  font-size: 12px
+  line-height: 1.42857
+
+
+.word-selection ul 
+  list-style-type: none
+
+
+.word-selection li 
+  display: inline-block
+
+
+.word-selection input[type="checkbox"][id^="cb"] 
+  display: none
+
+
+.word-selection label 
+  border: 1px solid #fff
+  padding: 10px
+  border-radius: 50%
+  display: block
+  position: relative
+  margin: 10px
+  cursor: pointer
+
+
+.word-selection label:before 
+  background-color: rgba(16, 65, 99, 0.32 )
+  text-align:center
+  color: white
+  content: " "
+  display: block
+  border-radius: 50%
+  /*   border: 1px solid grey */
+  position: absolute
+  top:10px
+  left: 10px
+  z-index:1
+  width: 100px
+  height: 100px
+  text-align: center
+  line-height: 100px
+  transition-duration: 0.4s
+  transform: scale(0)
+
+
+.word-selection label img 
+  height: 100px
+  width: 100px
+  transition-duration: 0.1s
+  transform-origin: 50% 50%
+  border-radius: 50%
+
+
+.word-selection :checked + label 
+  border-color: #eee
+
+
+.word-selection :checked + label:before 
+  content: "✓"
+  transform: scale(1.1)
+
+
+.word-selection :checked + label img 
+  transform: scale(1.2)
+  box-shadow: 0 0 3px #333
+  z-index: -1
+
+

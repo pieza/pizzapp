@@ -14,9 +14,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#promotions">Promociones</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contacto</a>
-                </li>
+                
                 <!-- unlogged buttons -->
                 <li class="nav-item" *ngIf="!auth.isAuth()">
                     <a class="nav-link" routerLink="/login">Ingresar</a>
@@ -26,6 +24,9 @@
                 </li>
 
                 <!-- logged buttons -->
+                <li class="nav-item" *ngIf="auth.isAuth()">
+                    <a class="nav-link"  routerLink="assemble">Ordenar</a>
+                </li>
                 <li class="nav-item" *ngIf="auth.isAuth()">
                     <a class="nav-link" href="javascript:void(0);" data-toggle="modal" data-target="#cartModal"><i class="fa fa-shopping-cart"></i> Carrito</a>
                 </li>
