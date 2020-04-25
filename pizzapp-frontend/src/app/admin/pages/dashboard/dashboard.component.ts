@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
   }
 
   async getStats() {
-    this.grandTotal = 0;
+    this.grandTotal = (await this.orderService.find().toPromise()).reduce((a, b) => a + b.total_price, 0);
     this.userCounter = (await this.userService.find().toPromise()).length;
     this.orderCounter = (await this.orderService.find().toPromise()).length;
     this.promoCounter = (await this.promoService.find({ active: true }).toPromise()).length;
